@@ -1,4 +1,5 @@
 import { CTAButton } from './CTAButton.jsx';
+import { DemoHeaderBar } from './DemoHeaderBar.jsx';
 import { siteConfig, getDemoWhatsAppUrl } from '../config/site.js';
 
 export function DemoLayout({
@@ -53,47 +54,18 @@ export function DemoLayout({
     demo.hero.cardCopy ??
     'Ejemplo conceptual conectado a la estetica de ByteShark, pero enfocado como negocio independiente.';
   const floatingWhatsAppLabel = `Abrir WhatsApp de ${heroCardTitle}`;
-  const headerLogoUrl = isWarm ? siteConfig.brand.logoDarkUrl : siteConfig.brand.logoUrl;
 
   return (
     <div
       className={`page-surface min-h-screen ${isWarm ? 'page-surface--warm' : ''}`.trim()}
       style={accentStyle}
     >
-      <header className="site-navbar sticky top-0 z-50">
-        <div className="section-shell flex items-center justify-between gap-4 py-4">
-          <a
-            className="flex min-w-0 items-center gap-3 text-on-surface"
-            href={siteConfig.links.mainSite}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <img
-              alt="ByteShark"
-              className="h-10 w-10 object-contain"
-              height="40"
-              src={headerLogoUrl}
-              width="40"
-            />
-            <div className="min-w-0">
-              <p className="font-headline text-lg font-bold tracking-tight">{siteConfig.brand.name}</p>
-              <p className="text-xs uppercase tracking-[0.18em] text-on-surface-variant">
-                Catalogo de demos
-              </p>
-            </div>
-          </a>
-          <div className="flex flex-wrap items-center justify-end gap-3">
-            <CTAButton href="/">Volver al catalogo</CTAButton>
-            <CTAButton
-              external={resolvedHeroActions.primary.external}
-              href={resolvedHeroActions.primary.href}
-              variant="secondary"
-            >
-              {resolvedHeroActions.primary.label}
-            </CTAButton>
-          </div>
-        </div>
-      </header>
+      <DemoHeaderBar
+        logoTone={isWarm ? 'dark' : 'light'}
+        primaryAction={resolvedHeroActions.primary}
+        secondaryAction={{ label: 'Volver al catalogo', href: '/' }}
+        tone={isWarm ? 'warm' : 'default'}
+      />
 
       <main>
         <section className="relative overflow-hidden pt-14 sm:pt-20">

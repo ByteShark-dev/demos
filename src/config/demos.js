@@ -3,183 +3,254 @@ export const demos = [
     slug: 'barberia',
     path: '/barberia/',
     name: 'Barberia Premium',
-    category: 'Barberia, estetica masculina y salon',
+    businessName: 'G&G Barber Studio',
+    category: 'Barberia premium, grooming y estilo masculino',
     problem:
-      'Ayuda a mostrar servicios, horarios, ubicacion y promociones sin depender de explicar todo por chat.',
+      'Muestra como una barberia puede agendar citas, presentar servicios, vender productos y generar confianza con una presencia digital premium.',
     ctaLabel: 'Ver demo',
     accent: {
-      from: '#caa26c',
-      to: '#6f4423',
-      halo: 'rgba(202, 162, 108, 0.32)',
-      surface: 'rgba(202, 162, 108, 0.12)',
+      from: '#d4b996',
+      to: '#58181f',
+      halo: 'rgba(88, 24, 31, 0.3)',
+      surface: 'rgba(212, 185, 150, 0.12)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '520000000001',
+        message: 'Hola, quiero agendar una cita en G&G Barber Studio.',
+      },
     },
     hero: {
-      eyebrow: 'Demo comercial para negocios con citas y flujo local',
-      title: 'Una barberia que transmite confianza antes de que llegue el cliente.',
+      eyebrow: 'Demo conceptual de barberia premium',
+      title: 'Tu proximo corte empieza con una experiencia premium',
       description:
-        'Pensada para cortes, barba, promos y reservas por WhatsApp con una presencia visual premium y facil de editar.',
+        'Agenda tu cita, conoce nuestros servicios y descubre una barberia pensada para estilo, precision y confianza.',
+      badges: ['Cortes premium', 'Barba', 'Estilo', 'Productos'],
       metrics: [
-        { label: 'Servicios visibles', value: '7 bloques editables' },
-        { label: 'Canal directo', value: 'WhatsApp destacado' },
-        { label: 'Operacion', value: 'Horarios + ubicacion + promos' },
+        { label: 'Servicios', value: '6 opciones premium' },
+        { label: 'Agenda', value: 'Sitio web + WhatsApp' },
+        { label: 'Presencia', value: 'Equipo, productos y galeria' },
       ],
     },
     highlights: [
       'Servicios y precios',
+      'Agenda de cita',
       'Boton de WhatsApp',
+      'Equipo',
+      'Productos',
       'Galeria de estilos',
-      'Ubicacion visible',
       'Horarios claros',
       'Resenas simuladas',
-      'Promociones semanales',
     ],
     sections: {
-      overview: {
-        eyebrow: 'Que resuelve',
-        title: 'Menos preguntas repetidas, mas citas cerradas',
+      services: {
+        eyebrow: 'Nuestros servicios',
+        title: 'Excelencia en cada detalle',
         description:
-          'La estructura muestra lo esencial en segundos para que un visitante se convierta rapido en cliente.',
-        items: [
-          {
-            title: 'Agenda mas clara',
-            description: 'El visitante entiende servicios, precios y disponibilidad sin friccion.',
-          },
-          {
-            title: 'Imagen mas premium',
-            description: 'La marca se siente cuidada, moderna y lista para cobrar mejor.',
-          },
-          {
-            title: 'Cierres por WhatsApp',
-            description: 'Los CTA llevan al cliente con contexto para pedir cita mas rapido.',
-          },
-        ],
-      },
-      offerings: {
-        eyebrow: 'Servicios y promos',
-        title: 'Paquetes listos para editar',
-        description: 'Puedes reemplazar textos, precios y llamadas a la accion por negocio.',
+          'Una carta premium para mostrar servicios, precios y tiempos con claridad desde el primer vistazo.',
         items: [
           {
             title: 'Corte clasico',
-            meta: 'Desde $180 MXN',
-            description: 'Ideal para mostrar duracion estimada, beneficios y foto destacada.',
+            price: '$180',
+            duration: '40 min',
+            description: 'Corte tradicional con lineas limpias, acabado preciso y estilo facil de mantener.',
+          },
+          {
+            title: 'Corte premium',
+            price: '$250',
+            duration: '50 min',
+            description: 'Incluye asesoria de estilo, detalles de precision y acabado premium.',
+          },
+          {
+            title: 'Arreglo de barba',
+            price: '$150',
+            duration: '30 min',
+            description: 'Perfilado, limpieza y forma definida para un look pulcro y profesional.',
           },
           {
             title: 'Corte + barba',
-            meta: 'Desde $260 MXN',
-            description: 'Presentado como servicio premium con paquete sugerido y CTA directo.',
+            price: '$320',
+            duration: '70 min',
+            description: 'Servicio completo para renovar tu imagen en una sola visita.',
           },
           {
-            title: 'Promo entre semana',
-            meta: 'Martes a jueves',
-            description: 'Espacio pensado para impulsar horarios de menor demanda.',
+            title: 'Perfilado',
+            price: '$80',
+            duration: '20 min',
+            description: 'Retoque rapido de contornos para mantener el estilo entre citas.',
+          },
+          {
+            title: 'Paquete completo',
+            price: '$420',
+            duration: '90 min',
+            description: 'Corte, barba, detalles premium y una experiencia de cuidado mas completa.',
           },
         ],
       },
-      features: {
-        eyebrow: 'Funciones destacadas',
-        title: 'Lo que esta demo ya contempla',
-        description: 'Base comercial lista para barberias, estudios de grooming o salones.',
+      booking: {
+        eyebrow: 'Agenda de cita',
+        title: 'Reserva tu espacio con una experiencia simple y directa',
+        description:
+          'Este formulario demo muestra como una barberia puede recibir solicitudes desde la web sin depender solo de mensajes improvisados.',
+        note: 'Tambien puedes agendar directamente por WhatsApp si prefieres atencion rapida.',
+        submitLabel: 'Solicitar cita',
+        whatsappLabel: 'Agendar por WhatsApp',
+      },
+      team: {
+        eyebrow: 'Conoce al equipo',
+        title: 'Barberos con especialidad, criterio y presencia',
+        description:
+          'La pagina puede presentar al equipo para generar confianza, diferenciar estilos y mostrar un servicio mas profesional.',
         items: [
           {
-            title: 'Mapa y referencia de zona',
-            description: 'Modulo para calle, colonia, horario y como llegar.',
+            title: 'Gento',
+            role: 'Especialista en degradados y cortes modernos',
+            description:
+              'Trabaja fades limpios, texturas urbanas y acabados pensados para destacar desde la primera visita.',
+            badge: 'Fade / moderno',
           },
           {
-            title: 'Galeria editable',
-            description: 'Bloques para cortes, antes y despues o ambiente del local.',
+            title: 'Galo',
+            role: 'Barba, perfilado y estilo clasico',
+            description:
+              'Se enfoca en lineas precisas, barbas definidas y un look tradicional con presencia elegante.',
+            badge: 'Barba / clasico',
           },
           {
-            title: 'Resenas simuladas',
-            description: 'Prueba social facil de sustituir por testimonios reales.',
+            title: 'Dante',
+            role: 'Cortes urbanos y disenos personalizados',
+            description:
+              'Ideal para clientes que buscan un estilo con caracter, detalles visuales y propuestas mas atrevidas.',
+            badge: 'Urbano / detalle',
           },
           {
-            title: 'WhatsApp contextual',
-            description: 'Mensaje precargado para cotizar o apartar cita en segundos.',
+            title: 'Mauro',
+            role: 'Corte ejecutivo y atencion premium',
+            description:
+              'Atiende perfiles ejecutivos con cortes pulcros, atencion cuidada y una experiencia premium.',
+            badge: 'Ejecutivo / premium',
+          },
+        ],
+      },
+      products: {
+        eyebrow: 'Productos',
+        title: 'Grooming essentials para mantener el estilo en casa',
+        description:
+          'Una seccion de retail ayuda a vender mas, reforzar marca y mostrar que la experiencia va mas alla del corte.',
+        items: [
+          {
+            title: 'Pomada mate',
+            price: '$180',
+            description: 'Textura firme con acabado natural para peinados que duran sin verse rigidos.',
+          },
+          {
+            title: 'Aceite para barba',
+            price: '$220',
+            description: 'Suaviza, aporta brillo controlado y ayuda a mantener una barba mejor cuidada.',
+          },
+          {
+            title: 'Shampoo fortalecedor',
+            price: '$160',
+            description: 'Limpieza suave para rutina diaria con sensacion fresca y una imagen mas cuidada.',
+          },
+          {
+            title: 'Cera de peinado',
+            price: '$150',
+            description: 'Control flexible para definir textura, volumen y acabado en segundos.',
           },
         ],
       },
       gallery: {
-        eyebrow: 'Visual',
-        title: 'Placeholder pensado para fotos reales del negocio',
-        description: 'Cada tarjeta representa un espacio visual listo para reemplazar.',
+        eyebrow: 'Galeria / estilos',
+        title: 'Trabajos y ambiente que venden experiencia',
+        description:
+          'Aunque aqui son placeholders, esta composicion esta pensada para lucir como una galeria real de resultados y estilo.',
         items: [
           {
-            title: 'Cortes y estilos',
-            caption: 'Grid para fades, barbas, acabados premium y resultados reales.',
+            title: 'Degradado',
+            caption: 'Precision en nuca, laterales y volumen superior.',
+            tone: 'fade',
           },
           {
-            title: 'Interior del local',
-            caption: 'Zona de espera, estaciones y detalles de marca para elevar confianza.',
+            title: 'Corte clasico',
+            caption: 'Lineas sobrias y textura con acabado editorial.',
+            tone: 'classic',
           },
           {
-            title: 'Promociones del mes',
-            caption: 'Espacio para destacar bonos, paquetes o convenios especiales.',
+            title: 'Barba perfilada',
+            caption: 'Contornos definidos para una imagen mas pulida.',
+            tone: 'beard',
           },
+          {
+            title: 'Estilo moderno',
+            caption: 'Composicion visual para cortes actuales y presencia premium.',
+            tone: 'modern',
+          },
+        ],
+      },
+      socials: {
+        eyebrow: 'Sigue nuestro trabajo',
+        title: 'Conecta sitio web, redes y WhatsApp desde una misma presencia digital',
+        description:
+          'La demo muestra como una barberia puede centralizar canales para verse mejor y facilitar contacto.',
+        items: [
+          { label: 'Instagram', href: '#' },
+          { label: 'Facebook', href: '#' },
+          { label: 'TikTok', href: '#' },
+          { label: 'WhatsApp', href: '#' },
         ],
       },
       testimonials: {
         eyebrow: 'Resenas simuladas',
-        title: 'Prueba social lista para personalizar',
-        description: 'El tono esta pensado para negocios con ticket medio y clientes recurrentes.',
+        title: 'Ejemplos ilustrativos de como podria verse la prueba social',
+        description:
+          'Estas resenas son ficticias y se muestran solo para ilustrar como una barberia puede comunicar confianza desde su pagina.',
         items: [
           {
-            quote: 'Reserve por WhatsApp y en menos de cinco minutos ya tenia horario confirmado.',
-            author: 'Cliente frecuente',
+            label: 'Ejemplo ilustrativo',
+            quote: 'Agende por WhatsApp y me atendieron sin esperar.',
+            author: 'Cliente de ejemplo 01',
           },
           {
-            quote: 'La pagina da confianza porque se ven precios, ubicacion y estilos desde el inicio.',
-            author: 'Nuevo cliente',
+            label: 'Ejemplo ilustrativo',
+            quote: 'El corte quedo justo como lo pedi.',
+            author: 'Cliente de ejemplo 02',
           },
           {
-            quote: 'Se siente como una barberia seria, no solo una cuenta de Instagram.',
-            author: 'Cliente premium',
+            label: 'Ejemplo ilustrativo',
+            quote: 'La barberia se ve profesional desde la pagina.',
+            author: 'Cliente de ejemplo 03',
           },
         ],
       },
-      trust: {
-        eyebrow: 'Operacion visible',
-        title: 'Datos que ayudan a cerrar la visita',
-        description: 'La demo reserva espacio para informacion practica y orientada a conversion.',
-        items: [
-          {
-            title: 'Horario claro',
-            description: 'Lunes a sabado de 10:00 a 20:00 con cierres especiales editables.',
-          },
-          {
-            title: 'Ubicacion destacada',
-            description: 'Direccion, mapa y texto corto para ubicar el local sin friccion.',
-          },
-          {
-            title: 'Promo persistente',
-            description: 'Barra o bloque para empujar paquetes y horarios de baja demanda.',
-          },
+      location: {
+        eyebrow: 'Ubicacion y horarios',
+        title: 'Visitanos o agenda antes de llegar',
+        description:
+          'Una pagina como esta ayuda a mostrar zona, horario y ubicacion sin obligar al cliente a preguntar todo por chat.',
+        zone: 'Zona Centro, Celaya, Gto.',
+        hours: [
+          { label: 'Lunes a viernes', value: '10:00 AM - 8:00 PM' },
+          { label: 'Sabado', value: '10:00 AM - 6:00 PM' },
+          { label: 'Domingo', value: 'Cerrado' },
         ],
-      },
-      faq: {
-        eyebrow: 'FAQ',
-        title: 'Preguntas frecuentes que filtran mejor al cliente',
-        description: 'Editable para disponibilidad, apartados, tiempos y formas de pago.',
-        items: [
-          {
-            question: 'Se necesita cita previa?',
-            answer: 'La demo sugiere cita por WhatsApp, aunque tambien puede adaptarse a atencion por llegada.',
-          },
-          {
-            question: 'Puedo mostrar promociones por temporada?',
-            answer: 'Si. La estructura ya contempla banners y tarjetas para promos semanales o mensuales.',
-          },
-          {
-            question: 'La galeria puede reemplazarse por fotos reales?',
-            answer: 'Si. Todo el bloque visual esta pensado para editarse con contenido propio.',
-          },
-        ],
+        ctaLabel: 'Abrir ubicacion',
+        mapLabel: 'Placeholder de ubicacion interactiva',
       },
       closing: {
-        title: 'Ideal para negocios que quieren verse mas premium y ordenar mejor sus citas.',
+        title: 'Agenda tu proximo corte',
         description:
-          'ByteShark puede adaptar esta base al tono, precios, ubicacion y estilo visual de tu barberia.',
+          'Evita esperas, elige tu servicio y asegura tu horario desde la web o WhatsApp.',
+        primaryLabel: 'Agendar cita',
+        secondaryLabel: 'WhatsApp',
       },
+    },
+    footer: {
+      brandName: 'G&G Barber Studio',
+      summary:
+        'Landing demo para mostrar como una barberia premium puede presentar servicios, equipo, productos y agenda digital desde una identidad propia.',
+      creatorLabel: 'Creado por ByteShark',
+      note: 'Demo conceptual creada por ByteShark. No representa una barberia real.',
     },
   },
   {
