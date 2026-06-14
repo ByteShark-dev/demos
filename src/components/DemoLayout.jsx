@@ -1,16 +1,64 @@
 import { CTAButton } from './CTAButton.jsx';
 import { siteConfig, getDemoWhatsAppUrl } from '../config/site.js';
 
-export function DemoLayout({ demo, children }) {
+export function DemoLayout({
+  demo,
+  children,
+  themeVariant = demo.themeVariant ?? 'default',
+  heroActions,
+  footerOverride,
+}) {
+  const isWarm = themeVariant === 'warm';
   const accentStyle = {
     '--accent-from': demo.accent.from,
     '--accent-to': demo.accent.to,
     '--accent-halo': demo.accent.halo,
     '--accent-surface': demo.accent.surface,
   };
+  const defaultHeroActions = {
+    primary: {
+      label: 'Adaptar para mi negocio',
+      href: getDemoWhatsAppUrl(demo),
+    },
+    secondary: {
+      label: 'Ver mas demos',
+      href: '/',
+      variant: 'secondary',
+    },
+  };
+  const resolvedHeroActions = {
+    ...defaultHeroActions,
+    ...heroActions,
+    primary: {
+      ...defaultHeroActions.primary,
+      ...heroActions?.primary,
+    },
+    secondary: {
+      ...defaultHeroActions.secondary,
+      ...heroActions?.secondary,
+    },
+  };
+  const resolvedFooter = footerOverride
+    ? {
+        actions: [
+          { label: 'Ir a ByteShark', href: siteConfig.links.mainSite },
+          { label: 'Volver al catalogo', href: '/', variant: 'secondary' },
+        ],
+        ...footerOverride,
+      }
+    : null;
+  const heroCardTitle = demo.businessName ?? demo.name;
+  const heroCardLabel = demo.hero.cardLabel ?? 'Demo adaptable';
+  const heroCardCopy =
+    demo.hero.cardCopy ??
+    'Ejemplo conceptual conectado a la estetica de ByteShark, pero enfocado como negocio independiente.';
+  const floatingWhatsAppLabel = `Abrir WhatsApp de ${heroCardTitle}`;
 
   return (
-    <div className="page-surface min-h-screen" style={accentStyle}>
+    <div
+      className={`page-surface min-h-screen ${isWarm ? 'page-surface--warm' : ''}`.trim()}
+      style={accentStyle}
+    >
       <header className="site-navbar sticky top-0 z-50">
         <div className="section-shell flex items-center justify-between gap-4 py-4">
           <a
@@ -35,8 +83,12 @@ export function DemoLayout({ demo, children }) {
           </a>
           <div className="flex flex-wrap items-center justify-end gap-3">
             <CTAButton href="/">Volver al catalogo</CTAButton>
-            <CTAButton href={getDemoWhatsAppUrl(demo.name)} variant="secondary">
-              Quiero esta base
+            <CTAButton
+              external={resolvedHeroActions.primary.external}
+              href={resolvedHeroActions.primary.href}
+              variant="secondary"
+            >
+              {resolvedHeroActions.primary.label}
             </CTAButton>
           </div>
         </div>
@@ -58,11 +110,18 @@ export function DemoLayout({ demo, children }) {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
-                <CTAButton href={getDemoWhatsAppUrl(demo.name)}>
-                  Adaptar para mi negocio
+                <CTAButton
+                  external={resolvedHeroActions.primary.external}
+                  href={resolvedHeroActions.primary.href}
+                >
+                  {resolvedHeroActions.primary.label}
                 </CTAButton>
-                <CTAButton href="/" variant="secondary">
-                  Ver mas demos
+                <CTAButton
+                  external={resolvedHeroActions.secondary.external}
+                  href={resolvedHeroActions.secondary.href}
+                  variant={resolvedHeroActions.secondary.variant ?? 'secondary'}
+                >
+                  {resolvedHeroActions.secondary.label}
                 </CTAButton>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -82,11 +141,12 @@ export function DemoLayout({ demo, children }) {
                   background: `linear-gradient(90deg, ${demo.accent.from}, ${demo.accent.to})`,
                 }}
               />
-              <p className="font-label text-xs uppercase tracking-[0.22em] text-secondary">Demo adaptable</p>
-              <h2 className="mt-4 text-3xl font-bold text-on-surface">{demo.name}</h2>
+              <p className="font-label text-xs uppercase tracking-[0.22em] text-secondary">
+                {heroCardLabel}
+              </p>
+              <h2 className="mt-4 text-3xl font-bold text-on-surface">{heroCardTitle}</h2>
               <p className="mt-4 text-sm leading-7 text-on-surface-variant">
-                Ejemplo conceptual conectado a la estetica de ByteShark, pero enfocado como
-                negocio independiente.
+                {heroCardCopy}
               </p>
               <div className="mt-8 grid gap-4">
                 {demo.hero.metrics.map((metric) => (
@@ -107,26 +167,65 @@ export function DemoLayout({ demo, children }) {
 
       <footer className="border-t border-outline-variant/20 bg-surface-container-lowest/80 py-12">
         <div className="section-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="font-headline text-xl font-bold text-on-surface">{siteConfig.brand.name}</p>
-            <p className="mt-2 text-sm text-on-surface-variant">{siteConfig.brand.tagline}</p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <CTAButton href={siteConfig.links.mainSite}>Ir a ByteShark</CTAButton>
-            <CTAButton href={siteConfig.links.catalog} variant="secondary">
-              Catalogo completo
-            </CTAButton>
-          </div>
+          {resolvedFooter ? (
+            <>
+              <div>
+                <p className="font-headline text-xl font-bold text-on-surface">
+                  {resolvedFooter.brandName}
+                </p>
+                {resolvedFooter.summary ? (
+                  <p className="mt-2 max-w-2xl text-sm leading-7 text-on-surface-variant">
+                    {resolvedFooter.summary}
+                  </p>
+                ) : null}
+                {resolvedFooter.creatorLabel ? (
+                  <p className="mt-3 text-sm font-semibold text-on-surface">
+                    {resolvedFooter.creatorLabel}
+                  </p>
+                ) : null}
+                {resolvedFooter.note ? (
+                  <p className="mt-2 text-sm leading-7 text-on-surface-variant">
+                    {resolvedFooter.note}
+                  </p>
+                ) : null}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {resolvedFooter.actions.map((action, index) => (
+                  <CTAButton
+                    key={`${action.label}-${index}`}
+                    external={action.external}
+                    href={action.href}
+                    variant={action.variant ?? (index === 0 ? 'primary' : 'secondary')}
+                  >
+                    {action.label}
+                  </CTAButton>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <p className="font-headline text-xl font-bold text-on-surface">{siteConfig.brand.name}</p>
+                <p className="mt-2 text-sm text-on-surface-variant">{siteConfig.brand.tagline}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <CTAButton href={siteConfig.links.mainSite}>Ir a ByteShark</CTAButton>
+                <CTAButton href={siteConfig.links.catalog} variant="secondary">
+                  Catalogo completo
+                </CTAButton>
+              </div>
+            </>
+          )}
         </div>
       </footer>
 
       <a
-        aria-label="Abrir WhatsApp de ByteShark"
+        aria-label={floatingWhatsAppLabel}
         className="floating-whatsapp"
-        href={getDemoWhatsAppUrl(demo.name)}
+        href={getDemoWhatsAppUrl(demo)}
         rel="noreferrer"
         target="_blank"
-        title="Abrir WhatsApp de ByteShark"
+        title={floatingWhatsAppLabel}
       >
         <span className="floating-whatsapp__icon" aria-hidden="true">
           <svg

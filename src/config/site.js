@@ -2,13 +2,43 @@ const whatsappPhone = '524614220738';
 const defaultCatalogMessage =
   'Hola ByteShark, vi las demos y me gustaria una propuesta para mi negocio.';
 
-export function buildWhatsAppUrl(message = defaultCatalogMessage) {
-  return `https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${encodeURIComponent(message)}`;
+function normalizeWhatsAppConfig(messageOrOptions = defaultCatalogMessage, phone = whatsappPhone) {
+  if (typeof messageOrOptions === 'object' && messageOrOptions !== null) {
+    return {
+      phone: messageOrOptions.phone ?? whatsappPhone,
+      message: messageOrOptions.message ?? defaultCatalogMessage,
+    };
+  }
+
+  return {
+    phone,
+    message: messageOrOptions,
+  };
 }
 
-export function getDemoWhatsAppUrl(demoName) {
+export function buildWhatsAppUrl(messageOrOptions = defaultCatalogMessage, phone = whatsappPhone) {
+  const config = normalizeWhatsAppConfig(messageOrOptions, phone);
+
+  return `https://api.whatsapp.com/send?phone=${config.phone}&text=${encodeURIComponent(config.message)}`;
+}
+
+export function getDemoWhatsAppUrl(demoOrName) {
+  if (typeof demoOrName === 'object' && demoOrName !== null) {
+    const whatsappConfig = demoOrName.contact?.whatsapp;
+
+    if (whatsappConfig?.phone || whatsappConfig?.message) {
+      return buildWhatsAppUrl(whatsappConfig);
+    }
+
+    const demoName = demoOrName.businessName ?? demoOrName.name ?? 'esta demo';
+
+    return buildWhatsAppUrl(
+      `Hola ByteShark, vi la demo de ${demoName} y me gustaria adaptarla a mi negocio.`,
+    );
+  }
+
   return buildWhatsAppUrl(
-    `Hola ByteShark, vi la demo de ${demoName} y me gustaria adaptarla a mi negocio.`,
+    `Hola ByteShark, vi la demo de ${demoOrName} y me gustaria adaptarla a mi negocio.`,
   );
 }
 
@@ -42,4 +72,3 @@ export const siteConfig = {
     finalCta: 'Contactar a ByteShark',
   },
 };
-
