@@ -53,6 +53,7 @@ export function DemoLayout({
     demo.hero.cardCopy ??
     'Ejemplo conceptual conectado a la estetica de ByteShark, pero enfocado como negocio independiente.';
   const floatingWhatsAppLabel = `Abrir WhatsApp de ${heroCardTitle}`;
+  const headerLogoUrl = isWarm ? siteConfig.brand.logoDarkUrl : siteConfig.brand.logoUrl;
 
   return (
     <div
@@ -71,7 +72,7 @@ export function DemoLayout({
               alt="ByteShark"
               className="h-10 w-10 object-contain"
               height="40"
-              src={siteConfig.brand.logoUrl}
+              src={headerLogoUrl}
               width="40"
             />
             <div className="min-w-0">

@@ -1,6 +1,7 @@
 const whatsappPhone = '524614220738';
 const defaultCatalogMessage =
   'Hola ByteShark, vi las demos y me gustaria una propuesta para mi negocio.';
+const localAsset = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 function normalizeWhatsAppConfig(messageOrOptions = defaultCatalogMessage, phone = whatsappPhone) {
   if (typeof messageOrOptions === 'object' && messageOrOptions !== null) {
@@ -48,7 +49,7 @@ export const siteConfig = {
     name: 'ByteShark',
     tagline: 'Software para la siguiente era',
     logoUrl: 'https://byteshark-dev.github.io/assets/images/byteshark_graphic_logo_white.svg',
-    logoDarkUrl: 'https://byteshark-dev.github.io/assets/images/byteshark_graphic_logo_dark_navy.svg',
+    logoDarkUrl: localAsset('brand/byteshark_graphic_logo_dark_navy.png'),
   },
   links: {
     mainSite: 'https://byteshark-dev.github.io/',
