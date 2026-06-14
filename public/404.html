@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirigiendo | Demos ByteShark</title>
+    <meta http-equiv="refresh" content="0; URL='/demos/'" />
+    <script>
+      const segmentCount = 1;
+      const locationData = window.location;
+      const cleanPath = locationData.pathname
+        .split('/')
+        .slice(1 + segmentCount)
+        .join('/');
+      const query = locationData.search ? '&' + locationData.search.slice(1).replace(/&/g, '~and~') : '';
+      const target =
+        locationData.protocol +
+        '//' +
+        locationData.hostname +
+        (locationData.port ? ':' + locationData.port : '') +
+        locationData.pathname
+          .split('/')
+          .slice(0, 1 + segmentCount)
+          .join('/') +
+        '/?/' +
+        cleanPath.replace(/&/g, '~and~') +
+        query +
+        locationData.hash;
+
+      locationData.replace(target);
+    </script>
+  </head>
+  <body></body>
+</html>
+
