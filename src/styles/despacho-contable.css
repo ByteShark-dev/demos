@@ -292,8 +292,10 @@
 }
 
 .accounting-demo__button--primary,
+.accounting-demo__button--primary:link,
 .accounting-demo__button--primary:visited,
 .accounting-demo__button--primary:hover,
+.accounting-demo__button--primary:active,
 .accounting-demo__button--primary:focus-visible {
   color: #ffffff;
 }
@@ -626,13 +628,27 @@
 }
 
 .accounting-demo__topbar .accounting-demo__button--primary,
+.accounting-demo__topbar .accounting-demo__button--primary:link,
 .accounting-demo__topbar .accounting-demo__button--primary:visited,
 .accounting-demo__topbar .accounting-demo__button--primary:hover,
+.accounting-demo__topbar .accounting-demo__button--primary:active,
 .accounting-demo__topbar .accounting-demo__button--primary:focus-visible,
 .accounting-demo__plan-card .accounting-demo__button--primary,
+.accounting-demo__plan-card .accounting-demo__button--primary:link,
 .accounting-demo__plan-card .accounting-demo__button--primary:visited,
 .accounting-demo__plan-card .accounting-demo__button--primary:hover,
+.accounting-demo__plan-card .accounting-demo__button--primary:active,
 .accounting-demo__plan-card .accounting-demo__button--primary:focus-visible {
+  color: #ffffff !important;
+}
+
+.accounting-demo__hero-actions .accounting-demo__button--primary,
+.accounting-demo__hero-actions .accounting-demo__button--primary:link,
+.accounting-demo__hero-actions .accounting-demo__button--primary:visited,
+.accounting-demo__hero-actions .accounting-demo__button--primary:hover,
+.accounting-demo__hero-actions .accounting-demo__button--primary:active,
+.accounting-demo__hero-actions .accounting-demo__button--primary:focus-visible,
+.accounting-demo__hero-actions .accounting-demo__button--primary * {
   color: #ffffff !important;
 }
 
