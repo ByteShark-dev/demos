@@ -165,7 +165,7 @@
 .accounting-demo__hero {
   position: relative;
   overflow: hidden;
-  padding: 4.5rem 0 5rem;
+  padding: 6.25rem 0 5rem;
   background: rgba(255, 255, 255, 0.6);
 }
 
@@ -274,8 +274,8 @@
 }
 
 .accounting-demo__button--primary {
-  background: var(--accounting-navy);
-  color: #ffffff;
+  background: var(--accounting-navy) !important;
+  color: #ffffff !important;
   box-shadow: 0 12px 24px rgba(19, 27, 46, 0.14);
 }
 
@@ -1060,7 +1060,7 @@
   }
 
   .accounting-demo__hero {
-    padding-top: 2rem;
+    padding-top: 3.5rem;
   }
 
   .accounting-demo__title {
