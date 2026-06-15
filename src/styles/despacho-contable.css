@@ -1,0 +1,1042 @@
+.accounting-demo {
+  --accounting-bg: #fcf8fa;
+  --accounting-surface: #ffffff;
+  --accounting-surface-soft: #f6f3f5;
+  --accounting-surface-muted: #f0edef;
+  --accounting-line: #c6c6cd;
+  --accounting-text: #1b1b1d;
+  --accounting-text-soft: #45464d;
+  --accounting-navy: #131b2e;
+  --accounting-navy-soft: #3f465c;
+  --accounting-green: #49935c;
+  --accounting-gold: #c9a86a;
+  --accounting-shadow: 0 4px 20px rgba(55, 61, 63, 0.05);
+  --accounting-shadow-strong: 0 16px 40px rgba(19, 27, 46, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(190, 198, 224, 0.26), transparent 20%),
+    radial-gradient(circle at left top, rgba(166, 244, 181, 0.1), transparent 18%),
+    linear-gradient(180deg, #fcf8fa 0%, #f8f5f7 100%);
+  color: var(--accounting-text);
+  font-family: Inter, sans-serif;
+}
+
+.accounting-demo * {
+  box-sizing: border-box;
+}
+
+.accounting-demo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.accounting-demo img {
+  display: block;
+  max-width: 100%;
+}
+
+.accounting-demo button,
+.accounting-demo input,
+.accounting-demo select,
+.accounting-demo textarea {
+  font: inherit;
+}
+
+.accounting-demo .demo-header-bar--warm {
+  position: sticky;
+  top: 0;
+  z-index: 95;
+  background: rgba(228, 226, 228, 0.82);
+  border-bottom: 1px solid rgba(198, 198, 205, 0.9);
+  box-shadow: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.accounting-demo .demo-header-bar--warm .demo-header-bar__title,
+.accounting-demo .demo-header-bar--warm .demo-header-bar__subtitle {
+  color: var(--accounting-text);
+}
+
+.accounting-demo .demo-header-bar--warm .cta-primary,
+.accounting-demo .demo-header-bar--warm .cta-secondary {
+  min-height: 2.65rem;
+  border-radius: 0.45rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  box-shadow: none;
+}
+
+.accounting-demo .demo-header-bar--warm .cta-primary {
+  background: var(--accounting-navy);
+  color: #ffffff;
+}
+
+.accounting-demo .demo-header-bar--warm .cta-secondary {
+  border-color: rgba(198, 198, 205, 0.96);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accounting-text-soft);
+}
+
+.accounting-demo__shell {
+  width: min(100% - 2rem, 80rem);
+  margin-inline: auto;
+}
+
+.accounting-demo__topbar {
+  position: sticky;
+  top: 4.9rem;
+  z-index: 85;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(198, 198, 205, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.accounting-demo__topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+}
+
+.accounting-demo__brand-link,
+.accounting-demo__title,
+.accounting-demo__section-title,
+.accounting-demo__card-title,
+.accounting-demo__cta-title,
+.accounting-demo__footer-block h3,
+.accounting-demo__footer-block h4 {
+  font-family: Inter, sans-serif;
+}
+
+.accounting-demo__brand-link {
+  color: var(--accounting-navy);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.accounting-demo__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.accounting-demo__nav a {
+  color: var(--accounting-text-soft);
+  font-size: 0.79rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.accounting-demo__nav a:hover {
+  color: var(--accounting-navy);
+}
+
+.accounting-demo__main {
+  padding-bottom: 4rem;
+}
+
+.accounting-demo__eyebrow,
+.accounting-demo__section-kicker {
+  margin: 0;
+  color: var(--accounting-navy-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__hero {
+  position: relative;
+  overflow: hidden;
+  padding: 4.5rem 0 5rem;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.accounting-demo__hero::before {
+  content: '';
+  position: absolute;
+  inset: auto auto -5rem -4rem;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  background: rgba(19, 27, 46, 0.04);
+  filter: blur(14px);
+}
+
+.accounting-demo__hero::after {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  right: -5rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 999px;
+  background: rgba(166, 244, 181, 0.08);
+  filter: blur(26px);
+}
+
+.accounting-demo__hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.95fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.accounting-demo__hero-copy {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.accounting-demo__title {
+  max-width: 12ch;
+  margin: 0;
+  color: var(--accounting-text);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.accounting-demo__lead,
+.accounting-demo__section-copy,
+.accounting-demo__card-copy,
+.accounting-demo__benefit-item p,
+.accounting-demo__step p,
+.accounting-demo__trust-card p,
+.accounting-demo__faq-item p,
+.accounting-demo__footer-block p,
+.accounting-demo__location-item p,
+.accounting-demo__cta-copy {
+  color: var(--accounting-text-soft);
+}
+
+.accounting-demo__lead,
+.accounting-demo__section-copy,
+.accounting-demo__cta-copy {
+  max-width: 38rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.accounting-demo__hero-actions,
+.accounting-demo__location-actions,
+.accounting-demo__cta-actions,
+.accounting-demo__form-actions,
+.accounting-demo__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.accounting-demo__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.05rem;
+  padding: 0.8rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.accounting-demo__button:hover {
+  transform: translateY(-1px);
+}
+
+.accounting-demo__button--primary {
+  background: var(--accounting-navy);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(19, 27, 46, 0.14);
+}
+
+.accounting-demo__button--secondary {
+  border-color: rgba(118, 119, 125, 0.4);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--accounting-text);
+}
+
+.accounting-demo__button--outline {
+  border-color: var(--accounting-navy);
+  background: transparent;
+  color: var(--accounting-navy);
+}
+
+.accounting-demo__hero-visual {
+  position: relative;
+}
+
+.accounting-demo__dashboard-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(198, 198, 205, 0.85);
+  border-radius: 0.75rem;
+  background: var(--accounting-surface-muted);
+  box-shadow: var(--accounting-shadow-strong);
+}
+
+.accounting-demo__hero-image {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  object-fit: cover;
+}
+
+.accounting-demo__stat-card {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(198, 198, 205, 0.8);
+  border-radius: 0.45rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--accounting-shadow);
+}
+
+.accounting-demo__stat-card span {
+  color: var(--accounting-text-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__stat-card strong {
+  color: var(--accounting-green);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.accounting-demo__badge-strip {
+  border-top: 1px solid rgba(198, 198, 205, 0.6);
+  border-bottom: 1px solid rgba(198, 198, 205, 0.6);
+  background: var(--accounting-surface-soft);
+  padding: 1.1rem 0;
+}
+
+.accounting-demo__badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem 3rem;
+}
+
+.accounting-demo__badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--accounting-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__section {
+  padding: 5rem 0;
+}
+
+.accounting-demo__section--soft,
+.accounting-demo__section--form {
+  background: var(--accounting-surface-soft);
+}
+
+.accounting-demo__section--dark {
+  background: var(--accounting-navy);
+  color: #ffffff;
+}
+
+.accounting-demo__section--compact {
+  padding-top: 1.25rem;
+  padding-bottom: 3rem;
+}
+
+.accounting-demo__section-head {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.accounting-demo__section-head--center {
+  justify-items: center;
+  text-align: center;
+}
+
+.accounting-demo__section-title {
+  margin: 0;
+  color: var(--accounting-text);
+  font-size: clamp(1.95rem, 3vw, 2.5rem);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.accounting-demo__section-title--light {
+  color: #ffffff;
+}
+
+.accounting-demo__services-grid,
+.accounting-demo__plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.accounting-demo__service-card,
+.accounting-demo__plan-card,
+.accounting-demo__trust-card,
+.accounting-demo__form-card,
+.accounting-demo__faq-item,
+.accounting-demo__location-card {
+  border: 1px solid rgba(198, 198, 205, 0.72);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.accounting-demo__service-card {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  min-height: 100%;
+  padding: 1.45rem;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.accounting-demo__service-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(19, 27, 46, 0.32);
+}
+
+.accounting-demo__service-icon,
+.accounting-demo__benefit-icon,
+.accounting-demo__trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.35rem;
+  background: rgba(19, 27, 46, 0.06);
+  color: var(--accounting-navy);
+}
+
+.accounting-demo__card-title {
+  margin: 0;
+  color: var(--accounting-text);
+  font-size: 1.12rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.accounting-demo__card-copy {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.accounting-demo__audience {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  min-height: 1.7rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(218, 226, 253, 0.58);
+  color: var(--accounting-navy-soft);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__benefits-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.95fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.accounting-demo__benefits-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.accounting-demo__benefit-item {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.accounting-demo__benefit-item h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__benefit-item p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.accounting-demo__meeting-shell {
+  overflow: hidden;
+  border-radius: 0.85rem;
+  box-shadow: var(--accounting-shadow-strong);
+}
+
+.accounting-demo__meeting-image {
+  width: 100%;
+  min-height: 32rem;
+  object-fit: cover;
+}
+
+.accounting-demo__plan-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1.6rem;
+  border-radius: 0.75rem;
+}
+
+.accounting-demo__plan-card--solid {
+  border-width: 2px;
+  border-color: var(--accounting-navy);
+  background: var(--accounting-surface-soft);
+  box-shadow: var(--accounting-shadow-strong);
+}
+
+.accounting-demo__plan-badge {
+  position: absolute;
+  top: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.7rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accounting-navy);
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__plan-head p,
+.accounting-demo__plan-head span {
+  margin: 0.2rem 0 0;
+  color: var(--accounting-text-soft);
+  font-size: 0.88rem;
+}
+
+.accounting-demo__plan-price {
+  color: var(--accounting-text);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1;
+  font-weight: 800;
+}
+
+.accounting-demo__plan-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.accounting-demo__plan-list li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  color: var(--accounting-text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.accounting-demo__plan-list svg {
+  color: var(--accounting-green);
+  flex-shrink: 0;
+}
+
+.accounting-demo__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.accounting-demo__steps::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: 9%;
+  right: 9%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.accounting-demo__step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.accounting-demo__step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.9rem;
+  height: 3.9rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--accounting-navy);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.accounting-demo__step h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.accounting-demo__step p {
+  margin: 0;
+  color: rgba(243, 240, 242, 0.82);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.accounting-demo__trust-panel {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.accounting-demo__trust-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.accounting-demo__trust-card {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  min-height: 100%;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+}
+
+.accounting-demo__trust-card h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.accounting-demo__trust-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.accounting-demo__form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(22rem, 1.05fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.accounting-demo__contact-points {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.accounting-demo__contact-points article,
+.accounting-demo__location-item {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.accounting-demo__contact-points span,
+.accounting-demo__location-item span {
+  color: var(--accounting-navy);
+  flex-shrink: 0;
+}
+
+.accounting-demo__contact-points strong,
+.accounting-demo__location-item strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--accounting-text);
+}
+
+.accounting-demo__form-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--accounting-shadow-strong);
+}
+
+.accounting-demo__form {
+  display: grid;
+  gap: 1rem;
+}
+
+.accounting-demo__form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.accounting-demo__field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.accounting-demo__field span {
+  color: var(--accounting-text);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__field input,
+.accounting-demo__field select,
+.accounting-demo__field textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.8rem 0.95rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background: var(--accounting-surface-soft);
+  color: var(--accounting-text);
+  transition: box-shadow 180ms ease, background 180ms ease;
+}
+
+.accounting-demo__field textarea {
+  resize: vertical;
+}
+
+.accounting-demo__field input:focus,
+.accounting-demo__field select:focus,
+.accounting-demo__field textarea:focus {
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(19, 27, 46, 0.16);
+}
+
+.accounting-demo__confirmation {
+  margin: 0;
+  color: var(--accounting-green);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.accounting-demo__faq-shell {
+  width: min(100% - 2rem, 50rem);
+}
+
+.accounting-demo__faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.accounting-demo__faq-item {
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.accounting-demo__faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.accounting-demo__faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.accounting-demo__faq-item[open] .accounting-demo__faq-arrow {
+  transform: rotate(90deg);
+}
+
+.accounting-demo__faq-arrow {
+  display: inline-flex;
+  transition: transform 180ms ease;
+}
+
+.accounting-demo__faq-item p {
+  margin: 0;
+  padding: 0 1.15rem 1rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.accounting-demo__location-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(18rem, 1.08fr);
+  overflow: hidden;
+  border-radius: 0.8rem;
+}
+
+.accounting-demo__location-copy,
+.accounting-demo__cta-panel {
+  padding: 1.8rem;
+}
+
+.accounting-demo__location-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0 0;
+}
+
+.accounting-demo__location-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 18rem;
+  background: var(--accounting-surface-soft);
+}
+
+.accounting-demo__map-frame {
+  display: grid;
+  place-items: center;
+  width: min(100% - 2rem, 24rem);
+  min-height: 14rem;
+  border: 1px solid rgba(198, 198, 205, 0.82);
+  border-radius: 0.6rem;
+  background:
+    linear-gradient(rgba(19, 27, 46, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 27, 46, 0.05) 1px, transparent 1px),
+    #ffffff;
+  background-size: 2.2rem 2.2rem, 2.2rem 2.2rem, auto;
+  color: var(--accounting-text-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.accounting-demo__cta-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(198, 198, 205, 0.7);
+  border-radius: 0.8rem;
+  background: var(--accounting-surface-muted);
+}
+
+.accounting-demo__cta-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -3rem;
+  width: 16rem;
+  height: 100%;
+  background: rgba(166, 244, 181, 0.08);
+  transform: skewX(-18deg);
+}
+
+.accounting-demo__cta-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.accounting-demo__cta-copy {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.8rem;
+}
+
+.accounting-demo__cta-actions {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.4rem;
+}
+
+.accounting-demo__footer {
+  padding: 4rem 0;
+  border-top: 1px solid rgba(198, 198, 205, 0.7);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.accounting-demo__footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr) minmax(0, 0.85fr);
+  gap: 2rem;
+}
+
+.accounting-demo__footer-block h3,
+.accounting-demo__footer-block h4 {
+  margin: 0 0 0.8rem;
+  color: var(--accounting-navy);
+  font-size: 1rem;
+}
+
+.accounting-demo__footer-block p,
+.accounting-demo__footer-block li,
+.accounting-demo__socials a {
+  margin: 0.35rem 0;
+  color: var(--accounting-text-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.accounting-demo__footer-block ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.accounting-demo__socials a {
+  display: inline-flex;
+  min-height: 2.1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(198, 198, 205, 0.82);
+  border-radius: 0.35rem;
+  background: var(--accounting-surface-soft);
+}
+
+.accounting-demo__icon-svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+}
+
+@media (max-width: 1180px) {
+  .accounting-demo__services-grid,
+  .accounting-demo__plans-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .accounting-demo__trust-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .accounting-demo__benefits-grid,
+  .accounting-demo__form-layout,
+  .accounting-demo__location-card,
+  .accounting-demo__footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .accounting-demo__topbar {
+    top: 4.5rem;
+  }
+
+  .accounting-demo__topbar-inner,
+  .accounting-demo__nav {
+    flex-wrap: wrap;
+  }
+
+  .accounting-demo__nav {
+    width: 100%;
+    order: 3;
+    margin-left: 0;
+    gap: 1rem;
+    padding-bottom: 0.8rem;
+    overflow-x: auto;
+  }
+
+  .accounting-demo__hero-grid,
+  .accounting-demo__steps,
+  .accounting-demo__trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accounting-demo__steps::before {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .accounting-demo__shell {
+    width: min(100% - 1rem, 80rem);
+  }
+
+  .accounting-demo__services-grid,
+  .accounting-demo__plans-grid,
+  .accounting-demo__benefits-list,
+  .accounting-demo__form-grid,
+  .accounting-demo__footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accounting-demo__hero {
+    padding-top: 2rem;
+  }
+
+  .accounting-demo__title {
+    max-width: 11ch;
+    font-size: 2.45rem;
+  }
+
+  .accounting-demo__hero-actions,
+  .accounting-demo__location-actions,
+  .accounting-demo__cta-actions,
+  .accounting-demo__form-actions {
+    flex-direction: column;
+  }
+
+  .accounting-demo__button {
+    width: 100%;
+  }
+
+  .accounting-demo__location-copy,
+  .accounting-demo__cta-panel,
+  .accounting-demo__form-card {
+    padding: 1.2rem;
+  }
+
+  .accounting-demo__meeting-image {
+    min-height: 20rem;
+  }
+}

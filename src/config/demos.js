@@ -496,184 +496,53 @@ export const demos = [
   },
   {
     slug: 'despacho-contable',
-    path: '/despacho-contable/',
-    name: 'Despacho Contable',
+    path: 'despacho-contable/',
+    name: 'Nexo Fiscal Consultores',
+    businessName: 'Nexo Fiscal Consultores',
     category: 'Contabilidad, fiscal, administrativo y consultoria',
     problem:
-      'Ayuda a comunicar servicios fiscales y confianza profesional con una estructura clara para captar leads.',
+      'Presenta servicios contables, planes y solicitud de asesoria con una identidad corporativa clara y confiable.',
     ctaLabel: 'Ver demo',
     accent: {
-      from: '#8fc0ff',
-      to: '#275786',
-      halo: 'rgba(143, 192, 255, 0.3)',
-      surface: 'rgba(143, 192, 255, 0.12)',
+      from: '#dae2fd',
+      to: '#131b2e',
+      halo: 'rgba(19, 27, 46, 0.18)',
+      surface: 'rgba(240, 237, 239, 0.92)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '520000000004',
+        message:
+          'Hola, quiero solicitar informacion sobre los servicios de Nexo Fiscal Consultores para mi negocio.',
+      },
     },
     hero: {
-      eyebrow: 'Demo comercial para servicios financieros y administrativos',
-      title: 'Un despacho que se siente ordenado, confiable y facil de contactar.',
+      eyebrow: 'Demo conceptual para firma contable y asesoria fiscal',
+      title: 'Contabilidad clara para decisiones inteligentes',
       description:
-        'La base presenta servicios fiscales, beneficios y preguntas frecuentes con un tono profesional y serio.',
+        'Servicios contables, fiscales y administrativos para negocios que necesitan orden, cumplimiento y asesoria profesional.',
       metrics: [
-        { label: 'Servicios', value: 'Fiscal + contable + asesoria' },
-        { label: 'Contacto', value: 'CTA directo a ByteShark o WhatsApp' },
-        { label: 'Confianza', value: 'Beneficios + FAQ + respaldo' },
+        { label: 'Servicios', value: 'Contable + fiscal + administrativo' },
+        { label: 'Contacto', value: 'Formulario demo + WhatsApp' },
+        { label: 'Confianza', value: 'Planes, proceso y FAQ visibles' },
       ],
     },
     highlights: [
-      'Servicios fiscales',
-      'Asesoria',
-      'Boton de contacto',
+      'Declaraciones',
+      'Facturacion',
+      'Asesoria fiscal',
+      'Empresas y personas fisicas',
+      'Solicitud de asesoria',
+      'Proceso de trabajo',
       'Beneficios',
       'Preguntas frecuentes',
-      'Seccion de confianza',
     ],
-    sections: {
-      overview: {
-        eyebrow: 'Que resuelve',
-        title: 'Una oferta seria y entendible para clientes que buscan orden',
-        description:
-          'La pagina ayuda a explicar el valor del despacho sin caer en texto excesivo o percepcion improvisada.',
-        items: [
-          {
-            title: 'Confianza profesional',
-            description: 'La identidad visual transmite metodo, orden y respaldo.',
-          },
-          {
-            title: 'Servicios bien definidos',
-            description: 'Las personas distinguen rapido lo fiscal, contable y administrativo.',
-          },
-          {
-            title: 'Contacto mas calificado',
-            description: 'El CTA dirige a una conversacion con mejor contexto inicial.',
-          },
-        ],
-      },
-      offerings: {
-        eyebrow: 'Servicios',
-        title: 'Bloques para servicios clave del despacho',
-        description: 'La estructura puede ampliarse segun regimenes, nichos o paquetes.',
-        items: [
-          {
-            title: 'Cumplimiento fiscal',
-            meta: 'Mensual o anual',
-            description: 'Espacio para declaraciones, obligaciones y seguimiento de cumplimiento.',
-          },
-          {
-            title: 'Asesoria administrativa',
-            meta: 'Negocios y profesionales',
-            description: 'Bloque para orden financiero, procesos y decisiones operativas.',
-          },
-          {
-            title: 'Acompanamiento recurrente',
-            meta: 'Retainer o paquete',
-            description: 'Ideal para clientes que necesitan supervision y soporte continuo.',
-          },
-        ],
-      },
-      features: {
-        eyebrow: 'Funciones destacadas',
-        title: 'Pensado para captar confianza y aclarar alcance',
-        description: 'Util para despachos pequenos, firmas boutique o asesores independientes.',
-        items: [
-          {
-            title: 'Beneficios visibles',
-            description: 'Ahorro de tiempo, orden documental y mejor toma de decisiones.',
-          },
-          {
-            title: 'Seccion de confianza',
-            description: 'Bloque para trayectoria, metodologia o sectores atendidos.',
-          },
-          {
-            title: 'FAQ practica',
-            description: 'Resuelve dudas iniciales antes de cotizar o agendar llamada.',
-          },
-          {
-            title: 'CTA a contacto directo',
-            description: 'Canal configurable para WhatsApp, correo o formulario.',
-          },
-        ],
-      },
-      gallery: {
-        eyebrow: 'Visual',
-        title: 'Placeholder para respaldos visuales sobrios',
-        description: 'No busca verse flashy, sino ordenado y confiable.',
-        items: [
-          {
-            title: 'Paneles y reportes',
-            caption: 'Espacio para dashboards, reportes ejecutivos o entregables.',
-          },
-          {
-            title: 'Proceso de trabajo',
-            caption: 'Visuales para onboarding, seguimiento y control documental.',
-          },
-          {
-            title: 'Industria atendida',
-            caption: 'Bloques para retail, servicios, profesionistas o pymes.',
-          },
-        ],
-      },
-      testimonials: {
-        eyebrow: 'Comentarios simulados',
-        title: 'Prueba social con tono corporativo',
-        description: 'Los testimonios estan pensados para transmitir orden y tranquilidad.',
-        items: [
-          {
-            quote: 'Por fin entendimos que servicio contratar y como iniciar sin confusiones.',
-            author: 'Pyme en crecimiento',
-          },
-          {
-            quote: 'La pagina comunica seriedad y hace facil dar el siguiente paso.',
-            author: 'Profesional independiente',
-          },
-          {
-            quote: 'El contenido se siente claro y orientado a resolver problemas reales.',
-            author: 'Negocio local',
-          },
-        ],
-      },
-      trust: {
-        eyebrow: 'Respaldo',
-        title: 'Elementos de confianza editables',
-        description: 'Sirven para diferenciar el despacho frente a opciones genericas.',
-        items: [
-          {
-            title: 'Metodologia clara',
-            description: 'Describe proceso de incorporacion, revision y seguimiento.',
-          },
-          {
-            title: 'Enfoque por perfil',
-            description: 'Puede adaptarse a pymes, personas fisicas o servicios especializados.',
-          },
-          {
-            title: 'Canal de contacto',
-            description: 'La pagina puede empujar correo, formulario o WhatsApp segun preferencia.',
-          },
-        ],
-      },
-      faq: {
-        eyebrow: 'FAQ',
-        title: 'Preguntas frecuentes para precalificar mejor',
-        description: 'Especialmente util en negocios donde el cliente llega con dudas abiertas.',
-        items: [
-          {
-            question: 'Se puede adaptar a un despacho boutique o consultor individual?',
-            answer: 'Si. La estructura no depende de un tamano fijo de equipo o de marca corporativa.',
-          },
-          {
-            question: 'El CTA puede ir a un formulario en vez de WhatsApp?',
-            answer: 'Si. El contacto principal esta centralizado y puede sustituirse sin rehacer la pagina.',
-          },
-          {
-            question: 'Sirve para nichos especificos?',
-            answer: 'Si. Se pueden cambiar textos, beneficios y FAQs para sectores muy concretos.',
-          },
-        ],
-      },
-      closing: {
-        title: 'Ideal para despachos que quieren verse confiables y vender mejor su claridad.',
-        description:
-          'ByteShark puede adaptar esta base a contabilidad, asesoria fiscal o consultoria administrativa.',
-      },
+    footer: {
+      brandName: 'Nexo Fiscal Consultores',
+      summary:
+        'Landing demostrativa basada en Stitch para presentar servicios contables, proceso y contacto con tono corporativo serio.',
+      creatorLabel: 'Creado por ByteShark',
+      note: 'Demo conceptual creada por ByteShark. No representa un despacho real.',
     },
   },
 ];

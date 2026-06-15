@@ -31,6 +31,18 @@ function renderPreview(demo) {
     );
   }
 
+  if (demo.slug === 'despacho-contable') {
+    return (
+      <div className="catalog-preview__accounting">
+        <div className="catalog-preview__accounting-mark">
+          <span>Nexo Fiscal</span>
+          <strong>Consultores</strong>
+        </div>
+        <p className="catalog-preview__accounting-copy">Contabilidad & estrategia</p>
+      </div>
+    );
+  }
+
   return (
     <div className="catalog-preview__accounting">
       <div className="catalog-preview__accounting-bars" />
