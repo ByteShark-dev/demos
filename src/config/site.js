@@ -48,7 +48,7 @@ export const siteConfig = {
   brand: {
     name: 'ByteShark',
     tagline: 'Software para la siguiente era',
-    logoUrl: 'https://byteshark-dev.github.io/assets/images/byteshark_graphic_logo_white.svg',
+    logoUrl: localAsset('brand/byteshark_graphic_logo.png'),
     logoDarkUrl: localAsset('brand/byteshark_graphic_logo_dark_navy.png'),
   },
   links: {

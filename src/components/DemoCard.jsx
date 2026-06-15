@@ -22,8 +22,11 @@ function renderPreview(demo) {
   if (demo.slug === 'salud-profesional') {
     return (
       <div className="catalog-preview__health">
-        <div className="catalog-preview__health-mark">CBI</div>
-        <p className="catalog-preview__health-copy">Bienestar Integral</p>
+        <div className="catalog-preview__health-mark">
+          <span>Centro</span>
+          <strong>Sereno</strong>
+        </div>
+        <p className="catalog-preview__health-copy">Salud Integral</p>
       </div>
     );
   }

@@ -446,197 +446,51 @@ export const demos = [
   },
   {
     slug: 'salud-profesional',
-    path: '/salud-profesional/',
-    name: 'Salud Profesional',
-    businessName: 'Centro Bienestar Integral',
-    themeVariant: 'warm',
-    category: 'Psicologia, medicina, terapia y consultorio privado',
+    path: 'salud-profesional/',
+    name: 'Centro Sereno Salud Integral',
+    businessName: 'Centro Sereno Salud Integral',
+    category: 'Psicologia clinica, salud emocional y consultorio privado',
     problem:
-      'Muestra como una pagina profesional puede generar confianza, explicar servicios, resolver dudas y facilitar citas por WhatsApp.',
+      'Presenta credenciales, servicios, proceso de atencion y agenda de consulta con un tono etico, sobrio y profesional.',
     ctaLabel: 'Ver demo',
     accent: {
-      from: '#9e5d5d',
-      to: '#d8b7b2',
-      halo: 'rgba(158, 93, 93, 0.24)',
-      surface: 'rgba(255, 218, 217, 0.54)',
+      from: '#c9ebd0',
+      to: '#476550',
+      halo: 'rgba(125, 157, 133, 0.24)',
+      surface: 'rgba(239, 238, 235, 0.86)',
     },
     contact: {
       whatsapp: {
-        phone: '520000000000',
+        phone: '520000000003',
         message:
-          'Hola, me gustaria pedir informacion para agendar una consulta en Centro Bienestar Integral.',
+          'Hola, me interesa agendar una consulta en Centro Sereno Salud Integral y conocer las modalidades disponibles.',
       },
     },
     hero: {
-      eyebrow: 'Demo conceptual para psicologos, doctores, terapeutas y consultorios privados',
-      title: 'Atencion profesional para tu bienestar',
+      eyebrow: 'Demo conceptual para salud emocional y consultorio privado',
+      title: 'Atencion profesional para tu bienestar emocional',
       description:
-        'Agenda consultas presenciales u online de forma sencilla, rapida y segura.',
-      cardLabel: 'Centro de ejemplo',
-      cardCopy:
-        'Landing conceptual pensada para mostrar confianza, claridad de servicios y una agenda inicial por WhatsApp.',
+        'Agenda una consulta presencial u online en un espacio etico, seguro y orientado a tu proceso personal.',
       metrics: [
-        { label: 'Servicios', value: '4 bloques adaptables' },
-        { label: 'Agenda', value: 'WhatsApp + horario coordinado' },
-        { label: 'Modalidad', value: 'Presencial u online' },
+        { label: 'Credenciales', value: 'Cedula visible y responsable del servicio' },
+        { label: 'Agenda', value: 'Formulario demo + WhatsApp' },
+        { label: 'Modalidad', value: 'Presencial y online' },
       ],
     },
     highlights: [
-      'Terapia individual',
+      'Atencion profesional',
       'Consulta online',
+      'Privacidad',
+      'Cedula visible',
       'Agenda por WhatsApp',
-      'Privacidad y confianza',
       'Preguntas frecuentes',
       'Seguimiento personalizado',
     ],
-    sections: {
-      services: {
-        eyebrow: 'Servicios',
-        title: 'Servicios pensados para atender con claridad y cercania',
-        description:
-          'Las tarjetas pueden adaptarse a distintas especialidades de salud o bienestar sin perder el tono profesional.',
-        items: [
-          {
-            title: 'Terapia individual',
-            description:
-              'Espacio profesional para trabajar bienestar emocional, procesos personales y herramientas de autocuidado.',
-          },
-          {
-            title: 'Orientacion emocional',
-            description:
-              'Sesiones para aclarar inquietudes, momentos de cambio o situaciones que necesitan contencion profesional.',
-          },
-          {
-            title: 'Consulta online',
-            description:
-              'Atencion remota para pacientes que buscan acompanamiento desde casa o desde otra ciudad.',
-          },
-          {
-            title: 'Acompanamiento familiar',
-            description:
-              'Orientacion para familias que necesitan una conversacion estructurada, empatica y enfocada en soluciones.',
-          },
-        ],
-      },
-      benefits: {
-        eyebrow: 'Beneficios',
-        title: 'Una pagina que transmite confianza desde el primer vistazo',
-        description:
-          'La estructura busca que un paciente o prospecto entienda rapido como iniciar, que servicios existen y como agendar.',
-        items: [
-          {
-            title: 'Atencion profesional',
-            description:
-              'Copy y estructura para comunicar experiencia, orden y un tono humano sin verse improvisado.',
-          },
-          {
-            title: 'Horarios flexibles',
-            description:
-              'La pagina deja claro que se pueden coordinar consultas presenciales u online segun disponibilidad.',
-          },
-          {
-            title: 'Privacidad y confianza',
-            description:
-              'El contenido explica el proceso con calma y reduce incertidumbre antes del primer contacto.',
-          },
-          {
-            title: 'Seguimiento personalizado',
-            description:
-              'Se muestra una experiencia cercana, ordenada y enfocada en acompanar cada caso con claridad.',
-          },
-        ],
-      },
-      booking: {
-        eyebrow: 'Proceso de agenda',
-        title: 'Agenda tu consulta en tres pasos',
-        description:
-          'Un flujo simple para resolver dudas y coordinar una cita sin friccion ni formularios largos.',
-        note:
-          'La modalidad, el horario y la confirmacion final pueden ajustarse segun el tipo de consultorio o especialidad.',
-        steps: [
-          {
-            title: 'Contacta por WhatsApp',
-            description:
-              'Escribe para pedir informacion general, resolver dudas iniciales o solicitar una cita.',
-          },
-          {
-            title: 'Elige horario disponible',
-            description:
-              'Se coordinan las opciones disponibles para consulta presencial u online segun tu necesidad.',
-          },
-          {
-            title: 'Recibe tu consulta presencial u online',
-            description:
-              'Obtienes la confirmacion y los detalles para asistir de forma clara, rapida y segura.',
-          },
-        ],
-      },
-      testimonials: {
-        eyebrow: 'Testimonios simulados',
-        title: 'Ejemplos ilustrativos de como podria verse la prueba social',
-        description:
-          'Los siguientes textos son ficticios y solo muestran el formato visual de testimonios dentro de la demo.',
-        items: [
-          {
-            label: 'Ejemplo ilustrativo',
-            quote:
-              'Me gusto que la pagina explicara el proceso con claridad antes de escribir. Se siente profesional y cercana.',
-            author: 'Paciente de ejemplo 01',
-          },
-          {
-            label: 'Ejemplo ilustrativo',
-            quote:
-              'La opcion de consulta online y las preguntas frecuentes me ayudaron a decidirme sin sentir presion.',
-            author: 'Paciente de ejemplo 02',
-          },
-          {
-            label: 'Ejemplo ilustrativo',
-            quote:
-              'La estructura transmite confianza desde el primer vistazo y hace mas sencillo dar el primer paso.',
-            author: 'Paciente de ejemplo 03',
-          },
-        ],
-      },
-      faq: {
-        eyebrow: 'Preguntas frecuentes',
-        title: 'Resuelve dudas antes de agendar',
-        description:
-          'Preguntas base para una demo de salud profesional que busca informar y facilitar el primer contacto.',
-        items: [
-          {
-            question: 'Puedo tomar consulta online?',
-            answer:
-              'Si. La demo esta pensada para mostrar modalidades presenciales u online segun lo que cada profesional ofrezca.',
-          },
-          {
-            question: 'Como agendo una cita?',
-            answer:
-              'La pagina dirige a un contacto por WhatsApp para resolver dudas iniciales y coordinar un horario disponible.',
-          },
-          {
-            question: 'Cuanto dura una sesion?',
-            answer:
-              'La duracion puede variar segun el servicio. La seccion esta preparada para aclararlo de forma simple antes de la cita.',
-          },
-          {
-            question: 'Puedo pedir informacion antes de agendar?',
-            answer:
-              'Si. El CTA permite solicitar orientacion general antes de confirmar una consulta presencial u online.',
-          },
-        ],
-      },
-      closing: {
-        title: 'Listo para agendar tu consulta?',
-        description:
-          'Escribe por WhatsApp para solicitar informacion o coordinar una consulta presencial u online.',
-        ctaLabel: 'Contactar por WhatsApp',
-      },
-    },
     footer: {
-      brandName: 'Centro Bienestar Integral',
+      brandName: 'Centro Sereno Salud Integral',
       summary:
-        'Pagina demostrativa para mostrar como un sitio de salud puede inspirar confianza, explicar servicios y facilitar la agenda inicial.',
-      creatorLabel: 'Demo conceptual creada por ByteShark.',
+        'Landing demostrativa inspirada directamente en Stitch para mostrar credenciales, servicios y agenda de consulta con tono profesional.',
+      creatorLabel: 'Creado por ByteShark',
       note: 'Demo conceptual creada por ByteShark. No representa un consultorio real.',
     },
   },
