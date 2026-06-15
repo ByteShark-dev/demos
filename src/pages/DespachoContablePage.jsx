@@ -644,7 +644,7 @@ export function DespachoContablePage() {
                 >
                   {plan.badge ? <span className="accounting-demo__plan-badge">{plan.badge}</span> : null}
                   <div className="accounting-demo__plan-head">
-                    <h3 className="accounting-demo__card-title">{plan.title}</h3>
+                    <h3 className="accounting-demo__plan-title">{plan.title}</h3>
                     <p>{plan.subtitle}</p>
                     <span>{plan.audience}</span>
                   </div>
