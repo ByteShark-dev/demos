@@ -255,8 +255,9 @@ export const demos = [
   },
   {
     slug: 'cafe-restaurante',
-    path: '/cafe-restaurante/',
-    name: 'Cafe / Restaurante',
+    path: 'cafe-restaurante/',
+    name: 'Bruma Café & Cocina',
+    businessName: 'Bruma Café & Cocina',
     category: 'Cafe, restaurante, snacks y bebidas',
     problem:
       'Ayuda a presentar menu, promociones, pedidos y ubicacion con una experiencia clara desde movil.',
@@ -267,11 +268,19 @@ export const demos = [
       halo: 'rgba(239, 178, 106, 0.32)',
       surface: 'rgba(239, 178, 106, 0.12)',
     },
+    contact: {
+      whatsapp: {
+        phone: '520000000002',
+        message:
+          'Hola, quiero pedir informacion sobre Bruma Café & Cocina y conocer el menu o reservar una mesa.',
+      },
+    },
     hero: {
-      eyebrow: 'Demo comercial para negocios de comida y bebida',
-      title: 'Un sitio que antoja, informa y facilita pedir o reservar.',
+      eyebrow: 'Demo comercial para cafe y restaurante',
+      title: 'Cafe, cocina y momentos para quedarse',
       description:
-        'La base mezcla menu digital, ubicacion, galeria y CTA para pedidos por WhatsApp o reservaciones.',
+        'Consulta el menu, descubre promociones y reserva tu mesa o pide por WhatsApp en segundos.',
+      badges: ['Cafe de especialidad', 'Desayunos', 'Postres', 'Reservas'],
       metrics: [
         { label: 'Menu digital', value: 'Secciones por categoria' },
         { label: 'Canales', value: 'Reservas o pedidos directos' },
