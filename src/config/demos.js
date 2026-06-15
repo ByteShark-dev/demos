@@ -1,8 +1,8 @@
 export const demos = [
   {
     slug: 'barberia',
-    path: '/barberia/',
-    name: 'Barberia Premium',
+    path: 'barberia/',
+    name: 'G&G Barber Studio',
     businessName: 'G&G Barber Studio',
     category: 'Barberia premium, grooming y estilo masculino',
     problem:

@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { CTAButton } from '../components/CTAButton.jsx';
 import { DemoHeaderBar } from '../components/DemoHeaderBar.jsx';
 import { getDemoBySlug } from '../config/demos.js';
 import { buildWhatsAppUrl, getDemoWhatsAppUrl } from '../config/site.js';
+import '../styles/barberia.css';
 
 function buildBookingMessage(demo, formData) {
   return [
@@ -17,32 +17,6 @@ function buildBookingMessage(demo, formData) {
   ].join('\n');
 }
 
-function buildServiceMessage(demo, serviceTitle) {
-  return `Hola, quiero agendar ${serviceTitle} en ${demo.businessName}.`;
-}
-
-function buildProductMessage(demo, productTitle) {
-  return `Hola, quiero informacion sobre ${productTitle} en ${demo.businessName}.`;
-}
-
-function renderHeroTitle(title) {
-  const accentText = 'experiencia premium';
-
-  if (!title.includes(accentText)) {
-    return title;
-  }
-
-  const [before, after] = title.split(accentText);
-
-  return (
-    <>
-      {before}
-      <span className="barber-accent-text">{accentText}</span>
-      {after}
-    </>
-  );
-}
-
 function getInitials(name) {
   return name
     .split(' ')
@@ -51,6 +25,21 @@ function getInitials(name) {
     .slice(0, 2)
     .toUpperCase();
 }
+
+const logoSrc = `${import.meta.env.BASE_URL}brand/g-g-barber-studio-logo.png`;
+const navItems = [
+  { label: 'Services', href: '#servicios' },
+  { label: 'Team', href: '#equipo' },
+  { label: 'Booking', href: '#booking' },
+];
+const serviceTones = ['classic', 'premium', 'beard', 'combo', 'detail', 'complete'];
+const productKinds = ['jar', 'dropper', 'bottle', 'tin'];
+const socialIcons = {
+  Instagram: 'IG',
+  Facebook: 'FB',
+  TikTok: 'TT',
+  WhatsApp: 'WA',
+};
 
 export function BarberiaPage() {
   const demo = getDemoBySlug('barberia');
@@ -65,11 +54,51 @@ export function BarberiaPage() {
   };
   const [formData, setFormData] = useState(bookingDefaults);
   const [confirmation, setConfirmation] = useState('');
+  const [isNavCondensed, setIsNavCondensed] = useState(false);
   const bookingHref = buildWhatsAppUrl({
     phone: demo.contact.whatsapp.phone,
     message: buildBookingMessage(demo, formData),
   });
   const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(demo.sections.location.zone)}`;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsNavCondensed(window.scrollY > 72);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll('.barber-demo [data-reveal]'));
+
+    if (!sections.length) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -91,472 +120,504 @@ export function BarberiaPage() {
   return (
     <div className="barber-demo min-h-screen">
       <DemoHeaderBar
-        primaryAction={{ label: 'Agendar por WhatsApp', href: whatsappHref, external: true }}
+        primaryAction={{ label: 'Adaptar esta demo', href: whatsappHref, external: true }}
         secondaryAction={{ label: 'Volver al catalogo', href: '/' }}
         tone="dark"
       />
 
-      <main>
-        <section className="barber-hero relative overflow-hidden">
-          <div aria-hidden="true" className="barber-hero__backdrop absolute inset-0" />
-          <div className="section-shell relative grid gap-14 py-16 sm:py-20 lg:min-h-[calc(100vh-88px)] lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center lg:py-24">
-            <div className="max-w-3xl space-y-8">
-              <div className="space-y-4">
-                <p className="barber-kicker">{demo.businessName}</p>
-                <div className="flex flex-wrap gap-3">
+      <div className="barber-demo__landing">
+        <nav className={`barber-demo__nav ${isNavCondensed ? 'is-condensed' : ''}`}>
+          <div className="barber-demo__container barber-demo__nav-inner">
+            <a className="barber-demo__brand" href="#inicio">
+              <img alt="Logo de G&G Barber Studio" src={logoSrc} />
+              <div>
+                <p className="barber-demo__brand-title">{demo.businessName}</p>
+                <p className="barber-demo__brand-subtitle">Modern heritage</p>
+              </div>
+            </a>
+
+            <div className="barber-demo__nav-links" aria-label="Secciones de la landing">
+              {navItems.map((item) => (
+                <a key={item.label} href={item.href}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="barber-demo__nav-cta">
+              <a className="barber-demo__ghost-link" href={whatsappHref} rel="noreferrer" target="_blank">
+                WhatsApp
+              </a>
+              <a className="barber-demo__button barber-demo__button--primary" href="#booking">
+                Agendar cita
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <main>
+          <header id="inicio" className="barber-demo__hero">
+            <div aria-hidden="true" className="barber-demo__hero-backdrop" />
+            <div className="barber-demo__container barber-demo__hero-inner">
+              <div className="barber-demo__hero-copy" data-reveal>
+                <div className="barber-demo__badge-row">
                   {demo.hero.badges.map((badge) => (
-                    <span key={badge} className="barber-chip">
+                    <span key={badge} className="barber-demo__badge">
                       {badge}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              <div className="space-y-6">
-                <h1 className="barber-display">{renderHeroTitle(demo.hero.title)}</h1>
-                <p className="barber-lead max-w-2xl">{demo.hero.description}</p>
-              </div>
+                <h1 className="barber-demo__eyebrow">
+                  Tu proximo corte
+                  <br />
+                  empieza con una
+                  <br />
+                  <span className="barber-demo__eyebrow-accent">experiencia premium</span>
+                </h1>
 
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <CTAButton href="#agenda">Agendar cita</CTAButton>
-                <CTAButton external href={whatsappHref} variant="secondary">
-                  Agendar por WhatsApp
-                </CTAButton>
-              </div>
-            </div>
+                <p className="barber-demo__lead">{demo.hero.description}</p>
 
-            <aside className="barber-hero-stage">
-              <div className="barber-hero-stage__crest">
-                <div className="barber-hero-stage__crest-ring">
-                  <div className="barber-hero-stage__crest-core">
-                    <p className="barber-hero-stage__crest-mark">G&amp;G</p>
-                    <p className="barber-hero-stage__crest-copy">Barber Studio</p>
-                  </div>
+                <div className="barber-demo__hero-actions">
+                  <a className="barber-demo__button barber-demo__button--primary" href="#booking">
+                    Agendar cita
+                  </a>
+                  <a
+                    className="barber-demo__button barber-demo__button--secondary"
+                    href={whatsappHref}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Agendar por WhatsApp
+                  </a>
                 </div>
               </div>
+            </div>
+          </header>
 
-              <div className="barber-hero-stage__copy">
-                <p className="barber-kicker text-[11px]">Modern heritage</p>
-                <p className="barber-stage-copy">
-                  Una landing premium pensada para mostrar servicios, vender productos, presentar
-                  al equipo y facilitar citas desde una experiencia mas seria y cuidada.
-                </p>
+          <section id="servicios" className="barber-demo__section">
+            <div className="barber-demo__container">
+              <div className="barber-demo__section-head barber-demo__section-head--center" data-reveal>
+                <p className="barber-demo__section-label">Nuestros servicios</p>
+                <h2 className="barber-demo__title">Nuestros Servicios</h2>
+                <div className="barber-demo__divider barber-demo__divider--center" />
+                <p className="barber-demo__copy">Excelencia en cada detalle</p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
-                {demo.hero.metrics.map((metric) => (
-                  <article key={metric.label} className="barber-metric-card">
-                    <p className="barber-metric-card__label">{metric.label}</p>
-                    <p className="barber-metric-card__value">{metric.value}</p>
+              <div className="barber-demo__services-grid">
+                {demo.sections.services.items.map((service, index) => (
+                  <article key={service.title} className="barber-demo__service-card" data-reveal>
+                    <div className="barber-demo__visual barber-demo__service-visual" data-tone={serviceTones[index]}>
+                      <div className="barber-demo__visual-copy">
+                        <strong>{service.title}</strong>
+                        <span>{service.price.replace('$', '')}</span>
+                      </div>
+                    </div>
+
+                    <div className="barber-demo__service-header">
+                      <h3 className="barber-demo__card-title">{service.title}</h3>
+                      <p className="barber-demo__price">{service.price}</p>
+                    </div>
+
+                    <p className="barber-demo__meta">{service.duration}</p>
+                    <p className="barber-demo__copy barber-demo__service-summary">{service.description}</p>
+                    <a
+                      className="barber-demo__service-link"
+                      href={buildWhatsAppUrl({
+                        phone: demo.contact.whatsapp.phone,
+                        message: `Hola, quiero agendar ${service.title} en ${demo.businessName}.`,
+                      })}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      Agendar
+                    </a>
                   </article>
                 ))}
               </div>
-            </aside>
-          </div>
-        </section>
-
-        <section id="servicios" className="barber-section">
-          <div className="section-shell">
-            <div className="barber-section-heading text-center">
-              <p className="barber-kicker">{demo.sections.services.eyebrow}</p>
-              <h2 className="barber-heading mt-4">{demo.sections.services.title}</h2>
-              <div className="barber-divider mx-auto mt-6" />
-              <p className="barber-subheading mx-auto mt-6 max-w-3xl">
-                {demo.sections.services.description}
-              </p>
             </div>
+          </section>
 
-            <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {demo.sections.services.items.map((service) => (
-                <article key={service.title} className="barber-menu-card">
-                  <div className="flex items-end justify-between gap-4">
-                    <h3 className="barber-card-title">{service.title}</h3>
-                    <span className="barber-price">{service.price}</span>
+          <section id="booking" className="barber-demo__section barber-demo__section--strong">
+            <div className="barber-demo__container">
+              <div className="barber-demo__booking-panel" data-reveal>
+                <div className="barber-demo__section-head barber-demo__section-head--center">
+                  <p className="barber-demo__section-label">Agenda de cita</p>
+                  <h2 className="barber-demo__title">Agenda tu cita</h2>
+                  <p className="barber-demo__copy">Reserva tu espacio y evita esperas innecesarias</p>
+                </div>
+
+                <form className="barber-demo__booking-form" onSubmit={handleSubmit}>
+                  <div className="barber-demo__field">
+                    <label className="barber-demo__meta" htmlFor="booking-name">
+                      Nombre
+                    </label>
+                    <input
+                      className="barber-demo__input"
+                      id="booking-name"
+                      name="name"
+                      onChange={handleChange}
+                      placeholder="Tu nombre"
+                      type="text"
+                      value={formData.name}
+                    />
                   </div>
-                  <p className="barber-meta mt-2">{service.duration}</p>
-                  <p className="barber-copy mt-5">{service.description}</p>
-                  <div className="mt-8">
-                    <CTAButton
-                      external
-                      href={buildWhatsAppUrl({
-                        phone: demo.contact.whatsapp.phone,
-                        message: buildServiceMessage(demo, service.title),
-                      })}
-                      variant="secondary"
+
+                  <div className="barber-demo__field">
+                    <label className="barber-demo__meta" htmlFor="booking-phone">
+                      Telefono
+                    </label>
+                    <input
+                      className="barber-demo__input"
+                      id="booking-phone"
+                      name="phone"
+                      onChange={handleChange}
+                      placeholder="+52"
+                      type="tel"
+                      value={formData.phone}
+                    />
+                  </div>
+
+                  <div className="barber-demo__field">
+                    <label className="barber-demo__meta" htmlFor="booking-service">
+                      Servicio
+                    </label>
+                    <select
+                      className="barber-demo__input"
+                      id="booking-service"
+                      name="service"
+                      onChange={handleChange}
+                      value={formData.service}
                     >
-                      Agendar
-                    </CTAButton>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="agenda" className="barber-section barber-section--alt">
-          <div className="section-shell">
-            <div className="barber-booking-panel mx-auto max-w-5xl">
-              <div className="barber-section-heading text-center">
-                <p className="barber-kicker">{demo.sections.booking.eyebrow}</p>
-                <h2 className="barber-heading mt-4">{demo.sections.booking.title}</h2>
-                <p className="barber-subheading mx-auto mt-6 max-w-3xl">
-                  {demo.sections.booking.description}
-                </p>
-              </div>
-
-              <form className="mt-12 grid gap-8 md:grid-cols-2" onSubmit={handleSubmit}>
-                <div className="space-y-2">
-                  <label className="barber-label" htmlFor="booking-name">
-                    Nombre
-                  </label>
-                  <input
-                    className="barber-input"
-                    id="booking-name"
-                    name="name"
-                    onChange={handleChange}
-                    placeholder="Tu nombre"
-                    type="text"
-                    value={formData.name}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="barber-label" htmlFor="booking-phone">
-                    Telefono
-                  </label>
-                  <input
-                    className="barber-input"
-                    id="booking-phone"
-                    name="phone"
-                    onChange={handleChange}
-                    placeholder="+52"
-                    type="tel"
-                    value={formData.phone}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="barber-label" htmlFor="booking-service">
-                    Servicio
-                  </label>
-                  <select
-                    className="barber-input"
-                    id="booking-service"
-                    name="service"
-                    onChange={handleChange}
-                    value={formData.service}
-                  >
-                    {demo.sections.services.items.map((service) => (
-                      <option key={service.title} value={service.title}>
-                        {service.title}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="grid gap-8 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="barber-label" htmlFor="booking-date">
-                      Fecha
-                    </label>
-                    <input
-                      className="barber-input"
-                      id="booking-date"
-                      name="date"
-                      onChange={handleChange}
-                      type="date"
-                      value={formData.date}
-                    />
+                      {demo.sections.services.items.map((service) => (
+                        <option key={service.title} value={service.title}>
+                          {service.title}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="barber-label" htmlFor="booking-time">
-                      Hora
-                    </label>
-                    <input
-                      className="barber-input"
-                      id="booking-time"
-                      name="time"
-                      onChange={handleChange}
-                      type="time"
-                      value={formData.time}
-                    />
-                  </div>
-                </div>
+                  <div className="barber-demo__field-row">
+                    <div className="barber-demo__field">
+                      <label className="barber-demo__meta" htmlFor="booking-date">
+                        Fecha
+                      </label>
+                      <input
+                        className="barber-demo__input"
+                        id="booking-date"
+                        name="date"
+                        onChange={handleChange}
+                        type="date"
+                        value={formData.date}
+                      />
+                    </div>
 
-                <div className="space-y-2 md:col-span-2">
-                  <label className="barber-label" htmlFor="booking-comments">
-                    Comentarios
-                  </label>
-                  <textarea
-                    className="barber-input min-h-[112px] resize-none"
-                    id="booking-comments"
-                    name="comments"
-                    onChange={handleChange}
-                    placeholder="Preferencias de estilo, detalle de barba o comentario adicional."
-                    value={formData.comments}
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <div className="flex flex-col gap-4 sm:flex-row">
-                    <button className="cta-primary w-full justify-center sm:w-auto" type="submit">
-                      {demo.sections.booking.submitLabel}
-                    </button>
-                    <CTAButton external href={bookingHref} variant="secondary">
-                      {demo.sections.booking.whatsappLabel}
-                    </CTAButton>
-                  </div>
-                  <p className="barber-subheading mt-5 max-w-2xl">{demo.sections.booking.note}</p>
-                  {confirmation ? (
-                    <p className="mt-4 text-sm font-medium text-[#dec29f]">{confirmation}</p>
-                  ) : null}
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <section id="equipo" className="barber-section">
-          <div className="section-shell">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-3xl">
-                <p className="barber-kicker">{demo.sections.team.eyebrow}</p>
-                <h2 className="barber-heading mt-4">{demo.sections.team.title}</h2>
-                <p className="barber-subheading mt-6">{demo.sections.team.description}</p>
-              </div>
-              <div className="barber-kicker text-left md:text-right">Artesanos del estilo</div>
-            </div>
-
-            <div className="mt-16 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-              {demo.sections.team.items.map((member) => (
-                <article key={member.title} className="barber-profile-card">
-                  <div className="barber-portrait-shell">
-                    <div className="barber-portrait">
-                      <span>{getInitials(member.title)}</span>
+                    <div className="barber-demo__field">
+                      <label className="barber-demo__meta" htmlFor="booking-time">
+                        Hora
+                      </label>
+                      <input
+                        className="barber-demo__input"
+                        id="booking-time"
+                        name="time"
+                        onChange={handleChange}
+                        type="time"
+                        value={formData.time}
+                      />
                     </div>
                   </div>
-                  <p className="barber-kicker mt-6 text-[11px]">{member.badge}</p>
-                  <h3 className="barber-card-title mt-3">{member.title}</h3>
-                  <p className="barber-meta mt-2">{member.role}</p>
-                  <p className="barber-copy mt-4">{member.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        <section className="barber-section barber-section--alt">
-          <div className="section-shell">
-            <div className="barber-section-heading text-center">
-              <p className="barber-kicker">{demo.sections.products.eyebrow}</p>
-              <h2 className="barber-heading mt-4">{demo.sections.products.title}</h2>
-              <p className="barber-subheading mx-auto mt-6 max-w-3xl">
-                {demo.sections.products.description}
-              </p>
-            </div>
-
-            <div className="mt-16 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-              {demo.sections.products.items.map((product, index) => (
-                <article key={product.title} className="barber-product-card">
-                  <div className="barber-product-visual">
-                    <span>{`P0${index + 1}`.slice(-3)}</span>
+                  <div className="barber-demo__field barber-demo__field--full">
+                    <label className="barber-demo__meta" htmlFor="booking-comments">
+                      Comentarios
+                    </label>
+                    <textarea
+                      className="barber-demo__input"
+                      id="booking-comments"
+                      name="comments"
+                      onChange={handleChange}
+                      placeholder="Preferencias de estilo, detalle de barba o comentario adicional."
+                      rows="2"
+                      value={formData.comments}
+                    />
                   </div>
-                  <h3 className="barber-card-title mt-6">{product.title}</h3>
-                  <p className="barber-price mt-2">{product.price}</p>
-                  <p className="barber-copy mt-4">{product.description}</p>
-                  <div className="mt-8">
-                    <CTAButton
-                      external
-                      href={buildWhatsAppUrl({
-                        phone: demo.contact.whatsapp.phone,
-                        message: buildProductMessage(demo, product.title),
-                      })}
-                      variant="secondary"
-                    >
-                      Consultar
-                    </CTAButton>
+
+                  <div className="barber-demo__booking-actions">
+                    <button className="barber-demo__button barber-demo__button--primary w-full" type="submit">
+                      Solicitar cita
+                    </button>
+                    <p className="barber-demo__booking-note">{demo.sections.booking.note}</p>
+                    {confirmation ? (
+                      <p className="barber-demo__booking-confirmation">{confirmation}</p>
+                    ) : null}
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+                </form>
 
-        <section className="barber-section">
-          <div className="section-shell">
-            <div className="barber-section-heading text-center">
-              <p className="barber-kicker">{demo.sections.gallery.eyebrow}</p>
-              <h2 className="barber-heading mt-4">{demo.sections.gallery.title}</h2>
-              <p className="barber-subheading mx-auto mt-6 max-w-3xl">
-                {demo.sections.gallery.description}
-              </p>
-            </div>
-
-            <div className="barber-gallery-grid mt-16">
-              {demo.sections.gallery.items.map((item, index) => (
-                <article
-                  key={item.title}
-                  className={`barber-gallery-card barber-gallery-card--${item.tone} ${index === 0 ? 'barber-gallery-card--feature' : ''}`.trim()}
-                >
-                  <div className="barber-gallery-card__overlay">
-                    <p className="barber-kicker text-[11px]">Placeholder visual</p>
-                    <h3 className="barber-card-title mt-3">{item.title}</h3>
-                    <p className="barber-copy mt-4 max-w-sm">{item.caption}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="barber-section barber-section--soft">
-          <div className="section-shell">
-            <div className="barber-section-heading text-center">
-              <p className="barber-kicker">{demo.sections.socials.eyebrow}</p>
-              <h2 className="barber-heading mt-4">{demo.sections.socials.title}</h2>
-              <p className="barber-subheading mx-auto mt-6 max-w-3xl">
-                {demo.sections.socials.description}
-              </p>
-            </div>
-
-            <div className="mt-12 flex flex-wrap justify-center gap-4">
-              {demo.sections.socials.items.map((item) => {
-                const isWhatsApp = item.label === 'WhatsApp';
-
-                return (
-                  <CTAButton
-                    key={item.label}
-                    external={isWhatsApp}
-                    href={isWhatsApp ? whatsappHref : item.href}
-                    variant="secondary"
+                <div className="barber-demo__booking-whatsapp">
+                  <p className="barber-demo__copy">Tambien puedes agendar directamente por WhatsApp.</p>
+                  <a
+                    className="barber-demo__button barber-demo__button--secondary"
+                    href={bookingHref}
+                    rel="noreferrer"
+                    target="_blank"
                   >
-                    {item.label}
-                  </CTAButton>
-                );
-              })}
+                    Agendar por WhatsApp
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="barber-section barber-section--alt">
-          <div className="section-shell text-center">
-            <p className="barber-kicker">{demo.sections.testimonials.eyebrow}</p>
-            <h2 className="barber-heading mt-4">{demo.sections.testimonials.title}</h2>
-            <p className="barber-subheading mx-auto mt-6 max-w-3xl">
-              {demo.sections.testimonials.description}
-            </p>
+          <section id="equipo" className="barber-demo__section">
+            <div className="barber-demo__container">
+              <div className="barber-demo__section-head barber-demo__section-head--split" data-reveal>
+                <div className="barber-demo__split-copy">
+                  <p className="barber-demo__section-label">Conoce al equipo</p>
+                  <h2 className="barber-demo__title">Conoce al equipo</h2>
+                  <p className="barber-demo__copy">Maestros del detalle y la precision</p>
+                </div>
+                <div className="barber-demo__split-accent">
+                  <span className="barber-demo__section-label">Artesanos del estilo</span>
+                </div>
+              </div>
 
-            <div className="mt-16 grid gap-10 md:grid-cols-3">
-              {demo.sections.testimonials.items.map((item) => (
-                <article key={item.author} className="barber-quote-card">
-                  <span className="barber-chip">{item.label}</span>
-                  <p className="barber-quote mt-6">"{item.quote}"</p>
-                  <p className="barber-meta mt-6">{item.author}</p>
-                </article>
-              ))}
+              <div className="barber-demo__team-grid">
+                {demo.sections.team.items.map((member) => (
+                  <article key={member.title} className="barber-demo__team-card" data-reveal>
+                    <div className="barber-demo__visual barber-demo__portrait">
+                      <span className="barber-demo__portrait-mark">{getInitials(member.title)}</span>
+                    </div>
+                    <div>
+                      <p className="barber-demo__meta">{member.badge}</p>
+                      <h3 className="barber-demo__card-title">{member.title}</h3>
+                      <p className="barber-demo__copy">{member.role}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="barber-section">
-          <div className="section-shell grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
-            <div className="space-y-8">
-              <div>
-                <p className="barber-kicker">{demo.sections.location.eyebrow}</p>
-                <h2 className="barber-heading mt-4">{demo.sections.location.title}</h2>
-                <p className="barber-subheading mt-6 max-w-2xl">
-                  {demo.sections.location.description}
+          <section className="barber-demo__section barber-demo__section--muted">
+            <div className="barber-demo__container">
+              <div className="barber-demo__section-head barber-demo__section-head--center" data-reveal>
+                <p className="barber-demo__section-label">Productos</p>
+                <h2 className="barber-demo__title">Grooming Essentials</h2>
+                <p className="barber-demo__copy">
+                  Manten el estilo de barberia en casa con una seleccion demo alineada al look de Stitch.
                 </p>
               </div>
 
-              <div>
-                <p className="barber-card-title">{demo.sections.location.zone}</p>
-              </div>
-
-              <div className="barber-hours-panel">
-                {demo.sections.location.hours.map((item) => (
-                  <div key={item.label} className="barber-hours-row">
-                    <span className="barber-meta">{item.label}</span>
-                    <span className="barber-copy text-right text-[#f9f7f2]">{item.value}</span>
-                  </div>
+              <div className="barber-demo__product-grid">
+                {demo.sections.products.items.map((product, index) => (
+                  <article key={product.title} className="barber-demo__product-card" data-reveal>
+                    <div className="barber-demo__product-visual">
+                      <span
+                        className={`barber-demo__product-form barber-demo__product-form--${productKinds[index]}`}
+                      />
+                    </div>
+                    <h3 className="barber-demo__card-title">{product.title}</h3>
+                    <p className="barber-demo__price">{product.price}</p>
+                    <a
+                      className="barber-demo__button barber-demo__button--secondary"
+                      href={buildWhatsAppUrl({
+                        phone: demo.contact.whatsapp.phone,
+                        message: `Hola, quiero informacion sobre ${product.title} en ${demo.businessName}.`,
+                      })}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      Consultar
+                    </a>
+                  </article>
                 ))}
               </div>
-
-              <CTAButton external href={mapHref} variant="secondary">
-                {demo.sections.location.ctaLabel}
-              </CTAButton>
             </div>
+          </section>
 
-            <div className="barber-map-card">
-              <div className="barber-map-card__pin">+</div>
-              <p className="barber-kicker text-[11px]">Mapa demo</p>
-              <p className="barber-card-title mt-4">{demo.sections.location.mapLabel}</p>
-              <p className="barber-subheading mt-4">
-                Espacio para integrar Google Maps, referencias de zona y CTA de como llegar.
-              </p>
-            </div>
-          </div>
-        </section>
+          <section className="barber-demo__section">
+            <div className="barber-demo__container">
+              <div className="barber-demo__section-head barber-demo__section-head--center" data-reveal>
+                <p className="barber-demo__section-label">Galeria</p>
+                <h2 className="barber-demo__title">Trabajos y ambiente</h2>
+                <p className="barber-demo__copy">
+                  La composicion replica el bento del export original usando placeholders propios.
+                </p>
+              </div>
 
-        <section className="barber-section pt-0">
-          <div className="section-shell">
-            <div className="barber-final-cta">
-              <p className="barber-kicker">CTA final</p>
-              <h2 className="barber-heading mt-4">{demo.sections.closing.title}</h2>
-              <p className="barber-subheading mx-auto mt-6 max-w-2xl">
-                {demo.sections.closing.description}
-              </p>
-              <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-                <CTAButton href="#agenda">{demo.sections.closing.primaryLabel}</CTAButton>
-                <CTAButton external href={whatsappHref} variant="secondary">
-                  {demo.sections.closing.secondaryLabel}
-                </CTAButton>
+              <div className="barber-demo__gallery">
+                {demo.sections.gallery.items.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className={`barber-demo__visual barber-demo__gallery-item barber-demo__gallery-item--${item.tone} ${index === 0 ? 'barber-demo__gallery-item--feature' : ''}`.trim()}
+                    data-reveal
+                  >
+                    <div className="barber-demo__gallery-overlay">
+                      <p className="barber-demo__meta">Placeholder visual</p>
+                      <h3 className="barber-demo__card-title">{item.title}</h3>
+                      <p className="barber-demo__copy">{item.caption}</p>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
 
-      <footer className="barber-footer">
-        <div className="section-shell grid gap-12 py-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)_minmax(0,0.7fr)]">
-          <div className="space-y-5">
-            <p className="barber-kicker">{demo.footer.creatorLabel}</p>
-            <h2 className="barber-card-title text-[2rem]">{demo.footer.brandName}</h2>
-            <p className="barber-subheading max-w-md">{demo.footer.summary}</p>
-            <p className="text-sm leading-7 text-[rgba(217,193,193,0.82)]">{demo.footer.note}</p>
-          </div>
+          <section className="barber-demo__section barber-demo__section--muted">
+            <div className="barber-demo__container">
+              <div className="barber-demo__section-head barber-demo__section-head--center" data-reveal>
+                <p className="barber-demo__section-label">Resenas simuladas</p>
+                <h2 className="barber-demo__title">Lo que dicen de nosotros</h2>
+              </div>
 
-          <div className="space-y-5">
-            <p className="barber-kicker">Servicios principales</p>
-            <ul className="space-y-3">
-              {demo.sections.services.items.slice(0, 4).map((service) => (
-                <li key={service.title} className="barber-copy text-[rgba(249,247,242,0.84)]">
-                  {service.title}
-                </li>
-              ))}
-            </ul>
-          </div>
+              <div className="barber-demo__review-grid">
+                {demo.sections.testimonials.items.map((item) => (
+                  <article key={item.author} className="barber-demo__review-card" data-reveal>
+                    <p className="barber-demo__quote">"{item.quote}"</p>
+                    <p className="barber-demo__meta">{item.author}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
 
-          <div className="space-y-5">
-            <p className="barber-kicker">Redes sociales</p>
-            <ul className="space-y-3">
-              {demo.sections.socials.items.map((item) => (
-                <li key={item.label}>
+          <section className="barber-demo__section">
+            <div className="barber-demo__container barber-demo__location">
+              <div data-reveal>
+                <p className="barber-demo__section-label">Ubicacion y horarios</p>
+                <h2 className="barber-demo__title">Visitanos</h2>
+                <p className="barber-demo__copy">{demo.sections.location.zone}</p>
+
+                <div className="barber-demo__hours">
+                  {demo.sections.location.hours.map((item) => (
+                    <div key={item.label} className="barber-demo__hours-row">
+                      <span className="barber-demo__meta">{item.label}</span>
+                      <span>{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8">
                   <a
-                    className="barber-copy text-[rgba(249,247,242,0.84)] transition-colors hover:text-[#dec29f]"
-                    href={item.label === 'WhatsApp' ? whatsappHref : item.href}
-                    rel={item.label === 'WhatsApp' ? 'noreferrer' : undefined}
-                    target={item.label === 'WhatsApp' ? '_blank' : undefined}
+                    className="barber-demo__button barber-demo__button--secondary"
+                    href={mapHref}
+                    rel="noreferrer"
+                    target="_blank"
                   >
-                    {item.label}
+                    Abrir ubicacion
                   </a>
-                </li>
-              ))}
-            </ul>
+                </div>
+              </div>
+
+              <div className="barber-demo__map" data-reveal>
+                <span className="barber-demo__map-pin">+</span>
+                <div className="barber-demo__map-copy">
+                  <p className="barber-demo__meta">Interactive map placeholder</p>
+                  <p className="barber-demo__copy">Zona Centro, Celaya, Gto. Mexico</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="barber-demo__section">
+            <div className="barber-demo__container">
+              <div className="barber-demo__cta-panel" data-reveal>
+                <p className="barber-demo__section-label">CTA final</p>
+                <h2 className="barber-demo__cta-title">{demo.sections.closing.title}</h2>
+                <p className="barber-demo__copy">{demo.sections.closing.description}</p>
+                <div className="barber-demo__cta-actions">
+                  <a className="barber-demo__button barber-demo__button--primary" href="#booking">
+                    Agendar ahora
+                  </a>
+                  <a
+                    className="barber-demo__button barber-demo__button--secondary"
+                    href={whatsappHref}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="barber-demo__section pt-0">
+            <div className="barber-demo__container text-center" data-reveal>
+              <p className="barber-demo__section-label">Sigue nuestro trabajo</p>
+              <div className="barber-demo__socials">
+                {demo.sections.socials.items.map((item) => {
+                  const isWhatsApp = item.label === 'WhatsApp';
+
+                  return (
+                    <a
+                      key={item.label}
+                      className="barber-demo__social-link"
+                      href={isWhatsApp ? whatsappHref : item.href}
+                      rel={isWhatsApp ? 'noreferrer' : undefined}
+                      target={isWhatsApp ? '_blank' : undefined}
+                    >
+                      <span className="barber-demo__social-icon">{socialIcons[item.label]}</span>
+                      <span className="barber-demo__meta">{item.label}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer className="barber-demo__footer">
+          <div className="barber-demo__container">
+            <div className="barber-demo__footer-inner">
+              <div className="barber-demo__footer-brand">
+                <div className="barber-demo__footer-brand-head">
+                  <img alt="Logo de G&G Barber Studio" src={logoSrc} />
+                  <div>
+                    <p className="barber-demo__footer-title">{demo.businessName}</p>
+                    <p className="barber-demo__meta">Barber Studio</p>
+                  </div>
+                </div>
+                <p className="barber-demo__footer-copy">
+                  Elevamos el concepto de barberia a una experiencia de lujo y precision para el
+                  caballero moderno.
+                </p>
+                <p className="barber-demo__footer-note">{demo.footer.note}</p>
+              </div>
+
+              <div>
+                <p className="barber-demo__section-label barber-demo__footer-label">Navegacion</p>
+                <div className="barber-demo__footer-links">
+                  <a className="barber-demo__footer-link" href="#servicios">
+                    Services
+                  </a>
+                  <a className="barber-demo__footer-link" href="#equipo">
+                    Team
+                  </a>
+                  <a className="barber-demo__footer-link" href="#booking">
+                    Booking
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <p className="barber-demo__section-label barber-demo__footer-label">Contacto</p>
+                <div className="barber-demo__footer-links">
+                  <p className="barber-demo__footer-link">Calle demo 123, Zona Centro</p>
+                  <p className="barber-demo__footer-link">Celaya, Gto. Mexico</p>
+                  <a className="barber-demo__footer-link" href={whatsappHref} rel="noreferrer" target="_blank">
+                    +52 (000) 000 0001
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="barber-demo__footer-bottom">
+              Demo conceptual creada por ByteShark. No representa una barberia real.
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 }
