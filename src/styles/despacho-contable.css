@@ -45,9 +45,11 @@
   position: sticky;
   top: 0;
   z-index: 95;
-  background: rgba(228, 226, 228, 0.82);
-  border-bottom: 1px solid rgba(198, 198, 205, 0.9);
-  box-shadow: none;
+  background:
+    linear-gradient(180deg, rgba(247, 244, 246, 0.99), rgba(240, 236, 239, 0.985)),
+    #f3eef1;
+  border-bottom: 1px solid rgba(198, 198, 205, 0.96);
+  box-shadow: 0 14px 30px rgba(55, 61, 63, 0.06);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -87,10 +89,18 @@
   position: sticky;
   top: 4.9rem;
   z-index: 85;
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom: 1px solid rgba(198, 198, 205, 0.7);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.995), rgba(247, 244, 246, 0.99)),
+    #fbf8fa;
+  border-bottom: 1px solid rgba(198, 198, 205, 0.86);
+  box-shadow: 0 10px 24px rgba(55, 61, 63, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+.accounting-demo section[id],
+.accounting-demo main[id] {
+  scroll-margin-top: 10rem;
 }
 
 .accounting-demo__topbar-inner {
@@ -279,6 +289,24 @@
   border-color: var(--accounting-navy);
   background: transparent;
   color: var(--accounting-navy);
+}
+
+.accounting-demo__button--primary,
+.accounting-demo__button--primary:visited,
+.accounting-demo__button--primary:hover,
+.accounting-demo__button--primary:focus-visible {
+  color: #ffffff;
+}
+
+.accounting-demo__button--secondary,
+.accounting-demo__button--secondary:visited,
+.accounting-demo__button--secondary:hover,
+.accounting-demo__button--secondary:focus-visible,
+.accounting-demo__button--outline,
+.accounting-demo__button--outline:visited,
+.accounting-demo__button--outline:hover,
+.accounting-demo__button--outline:focus-visible {
+  color: var(--accounting-text);
 }
 
 .accounting-demo__hero-visual {
