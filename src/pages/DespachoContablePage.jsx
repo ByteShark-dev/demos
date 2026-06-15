@@ -407,6 +407,7 @@ function AccountingButton({
   onClick,
 }) {
   const className = `accounting-demo__button accounting-demo__button--${variant}`;
+  const style = variant === 'primary' ? { color: '#ffffff' } : undefined;
 
   if (href) {
     return (
@@ -414,6 +415,7 @@ function AccountingButton({
         className={className}
         href={href}
         rel={external ? 'noreferrer' : undefined}
+        style={style}
         target={external ? '_blank' : undefined}
       >
         {children}
@@ -422,7 +424,7 @@ function AccountingButton({
   }
 
   return (
-    <button className={className} onClick={onClick} type={type}>
+    <button className={className} onClick={onClick} style={style} type={type}>
       {children}
     </button>
   );
