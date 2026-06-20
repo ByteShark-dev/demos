@@ -1,0 +1,1288 @@
+.booking-manager-demo {
+  --booking-text-main: #0f172a;
+  --booking-text-muted: #475569;
+  --booking-text-soft: #64748b;
+  --booking-border: #d8e2ee;
+  color-scheme: light;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(192, 132, 252, 0.12), transparent 22%),
+    linear-gradient(180deg, #f8fbfd 0%, #eff4f7 100%);
+  color: var(--booking-text-main);
+  font-family: 'Hanken Grotesk', 'Segoe UI', sans-serif;
+}
+
+.booking-manager-demo *,
+.booking-manager-demo *::before,
+.booking-manager-demo *::after {
+  box-sizing: border-box;
+}
+
+.booking-manager-demo a,
+.booking-manager-demo button,
+.booking-manager-demo input {
+  font: inherit;
+}
+
+.booking-manager-demo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.booking-manager-demo button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.booking-manager-app-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.95rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  overflow-x: hidden;
+}
+
+.booking-manager-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background:
+    radial-gradient(circle at top, rgba(192, 132, 252, 0.12), transparent 28%),
+    linear-gradient(180deg, #071724 0%, #0a1f31 100%);
+  color: #d9e9ef;
+  box-shadow: 0 22px 44px rgba(2, 8, 23, 0.16);
+  overflow: hidden;
+}
+
+.booking-manager-sidebar__header,
+.booking-manager-sidebar__business > div,
+.booking-manager-topbar__identity > div,
+.booking-manager-brand-card > div,
+.booking-manager-list-card__header > div,
+.booking-manager-appointment-card__header > div,
+.booking-manager-alert-card__header > div {
+  min-width: 0;
+}
+
+.booking-manager-sidebar__header h2 {
+  margin: 0.65rem 0 0.25rem;
+  font-size: clamp(1.28rem, 2.4vw, 1.62rem);
+  line-height: 1.05;
+  color: #f7fbff;
+}
+
+.booking-manager-sidebar__header p,
+.booking-manager-sidebar__footnote span,
+.booking-manager-sidebar__business span,
+.booking-manager-nav-item__content small {
+  margin: 0;
+  color: rgba(218, 232, 240, 0.76);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-list-card p,
+.booking-manager-alert-card p,
+.booking-manager-activity-list__body p,
+.booking-manager-service-card p,
+.booking-manager-reminder-card p,
+.booking-manager-block-card p,
+.booking-manager-block-card span,
+.booking-manager-block-card small,
+.booking-manager-brand-card p,
+.booking-manager-field-card p,
+.booking-manager-integration-card p,
+.booking-manager-empty-state p,
+.booking-manager-day-card__header p,
+.booking-manager-availability-card p,
+.booking-manager-summary-tile p,
+.booking-manager-progress-list__note {
+  margin: 0;
+  color: var(--booking-text-muted);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  background: rgba(15, 118, 110, 0.1);
+  color: #0f766e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.booking-manager-sidebar .booking-manager-pill {
+  border-color: rgba(110, 231, 226, 0.18);
+  background: rgba(45, 212, 191, 0.12);
+  color: #8cf4e7;
+}
+
+.booking-manager-pill--soft {
+  border-color: rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  color: #334155;
+}
+
+.booking-manager-sidebar__business {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.9rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.booking-manager-sidebar__mark,
+.booking-manager-brand-card__mark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.96), rgba(192, 132, 252, 0.88));
+  color: #f7fffe;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.booking-manager-sidebar__business strong,
+.booking-manager-sidebar__footnote strong,
+.booking-manager-nav-item__content strong {
+  display: block;
+  color: #f7fbff;
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-sidebar__nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.booking-manager-nav-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  width: 100%;
+  padding: 0.72rem 0.82rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  color: inherit;
+  text-align: left;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.booking-manager-nav-item:hover {
+  transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.booking-manager-nav-item.is-active {
+  border-color: rgba(110, 231, 226, 0.22);
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.booking-manager-nav-item__icon,
+.booking-manager-metric-card__icon,
+.booking-manager-activity-list__icon,
+.booking-manager-empty-state__icon {
+  display: grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #d4f3ed;
+  flex-shrink: 0;
+}
+
+.booking-manager-nav-item.is-active .booking-manager-nav-item__icon {
+  background: rgba(110, 231, 226, 0.16);
+  color: #ffffff;
+}
+
+.booking-manager-nav-item__icon svg,
+.booking-manager-metric-card__icon svg,
+.booking-manager-activity-list__icon svg,
+.booking-manager-search__icon svg,
+.booking-manager-empty-state__icon svg,
+.booking-manager-inline-button svg {
+  width: 1.08rem;
+  height: 1.08rem;
+}
+
+.booking-manager-nav-item__content {
+  display: grid;
+  gap: 0.16rem;
+  min-width: 0;
+}
+
+.booking-manager-nav-item__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  max-width: 100%;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d9eef4;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.booking-manager-sidebar__footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+  min-width: 0;
+  margin-top: auto;
+}
+
+.booking-manager-sidebar__footnote,
+.booking-manager-sidebar__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.booking-manager-ghost-link,
+.booking-manager-primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.88rem 1rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.booking-manager-ghost-link {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.booking-manager-primary-link {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 1), rgba(22, 163, 74, 0.92));
+  color: #f7fffe;
+  box-shadow: 0 18px 34px rgba(13, 148, 136, 0.18);
+}
+
+.booking-manager-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.booking-manager-topbar,
+.booking-manager-banner,
+.booking-manager-module-intro,
+.booking-manager-panel,
+.booking-manager-metric-card {
+  min-width: 0;
+  border: 1px solid var(--booking-border);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.56);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.booking-manager-topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.95rem;
+  border-radius: 1.45rem;
+  overflow: hidden;
+}
+
+.booking-manager-topbar__identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.booking-manager-topbar__eyebrow {
+  margin: 0;
+  color: #0f766e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.booking-manager-topbar h1,
+.booking-manager-banner h2,
+.booking-manager-module-intro h2,
+.booking-manager-empty-state h3 {
+  margin: 0.22rem 0 0.24rem;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.04;
+  color: var(--booking-text-main);
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-topbar p,
+.booking-manager-banner p,
+.booking-manager-module-intro p,
+.booking-manager-empty-state p {
+  margin: 0;
+  color: var(--booking-text-muted);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-topbar > *,
+.booking-manager-banner > *,
+.booking-manager-module-intro > * {
+  min-width: 0;
+}
+
+.booking-manager-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 3.1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 1rem;
+  border: 1px solid var(--booking-border);
+  background: #f8fbfc;
+}
+
+.booking-manager-search__icon {
+  display: inline-flex;
+  color: var(--booking-text-soft);
+}
+
+.booking-manager-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--booking-text-main);
+  outline: none;
+}
+
+.booking-manager-search input::placeholder {
+  color: #94a3b8;
+}
+
+.booking-manager-topbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 0.7rem;
+}
+
+.booking-manager-topbar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 180px;
+  max-width: 100%;
+  min-height: 2.85rem;
+  padding: 0.78rem 1rem;
+  border-radius: 0.95rem;
+  background: #e9f5f3;
+  color: #0f766e;
+  font-weight: 700;
+  line-height: 1.24;
+  text-align: center;
+  white-space: normal;
+}
+
+.booking-manager-topbar__button--ghost {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.booking-manager-topbar__button--primary {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 1), rgba(192, 132, 252, 0.94));
+  color: #f8fffe;
+  box-shadow: 0 16px 30px rgba(15, 118, 110, 0.18);
+}
+
+.booking-manager-banner {
+  display: grid;
+  gap: 1rem;
+  padding: 1.3rem;
+  border-radius: 1.7rem;
+  background:
+    radial-gradient(circle at top right, rgba(192, 132, 252, 0.14), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(247, 251, 252, 0.96));
+}
+
+.booking-manager-banner__aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.booking-manager-banner__stat,
+.booking-manager-module-intro__stats > div,
+.booking-manager-summary-tile,
+.booking-manager-availability-card,
+.booking-manager-block-card,
+.booking-manager-brand-card,
+.booking-manager-field-card,
+.booking-manager-integration-card,
+.booking-manager-day-card,
+.booking-manager-service-card,
+.booking-manager-list-card,
+.booking-manager-alert-card,
+.booking-manager-reminder-card,
+.booking-manager-empty-state {
+  border-radius: 1.15rem;
+  border: 1px solid var(--booking-border);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+.booking-manager-banner__stat,
+.booking-manager-module-intro__stats > div,
+.booking-manager-summary-tile,
+.booking-manager-brand-card,
+.booking-manager-field-card,
+.booking-manager-block-card {
+  padding: 0.95rem 1rem;
+}
+
+.booking-manager-banner__stat span,
+.booking-manager-module-intro__stats span,
+.booking-manager-summary-tile span,
+.booking-manager-field-card span,
+.booking-manager-availability-card span,
+.booking-manager-service-card span,
+.booking-manager-list-card__meta span,
+.booking-manager-metric-card__label,
+.booking-manager-panel__subtitle,
+.booking-manager-progress-list__item span,
+.booking-manager-week-load__meta span,
+.booking-manager-table__primary span,
+.booking-manager-reminder-card__meta span,
+.booking-manager-appointment-card__meta span,
+.booking-manager-activity-list__head span,
+.booking-manager-appointment-card__time {
+  display: block;
+  color: var(--booking-text-soft);
+  font-size: 0.82rem;
+}
+
+.booking-manager-banner__stat strong,
+.booking-manager-module-intro__stats strong,
+.booking-manager-summary-tile strong,
+.booking-manager-field-card strong,
+.booking-manager-block-card strong,
+.booking-manager-brand-card strong,
+.booking-manager-list-card strong,
+.booking-manager-activity-list strong,
+.booking-manager-service-card strong,
+.booking-manager-availability-card strong,
+.booking-manager-reminder-card strong,
+.booking-manager-integration-card strong,
+.booking-manager-progress-list__header strong,
+.booking-manager-alert-card__header strong,
+.booking-manager-appointment-card__header strong {
+  color: var(--booking-text-main);
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-banner__stat strong,
+.booking-manager-module-intro__stats strong {
+  display: block;
+  margin-top: 0.24rem;
+  font-size: 1.12rem;
+}
+
+.booking-manager-module-intro {
+  display: grid;
+  gap: 1rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: 1.6rem;
+}
+
+.booking-manager-module-intro__stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.booking-manager-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.booking-manager-metrics-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.booking-manager-metrics-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.booking-manager-metric-card {
+  --metric-accent: rgba(148, 163, 184, 0.58);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.1rem;
+  border-radius: 1.35rem;
+  border-top: 4px solid var(--metric-accent);
+}
+
+.booking-manager-metric-card--neutral {
+  --metric-accent: rgba(59, 130, 246, 0.7);
+}
+
+.booking-manager-metric-card--success {
+  --metric-accent: rgba(16, 185, 129, 0.82);
+}
+
+.booking-manager-metric-card--info {
+  --metric-accent: rgba(8, 145, 178, 0.82);
+}
+
+.booking-manager-metric-card--warning {
+  --metric-accent: rgba(245, 158, 11, 0.9);
+}
+
+.booking-manager-metric-card--danger {
+  --metric-accent: rgba(239, 68, 68, 0.9);
+}
+
+.booking-manager-metric-card__icon {
+  background: color-mix(in srgb, var(--metric-accent) 14%, #ffffff);
+  color: #0f766e;
+}
+
+.booking-manager-metric-card__body {
+  min-width: 0;
+}
+
+.booking-manager-metric-card__value {
+  margin: 0.35rem 0 0.42rem;
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  line-height: 1.02;
+  color: var(--booking-text-main);
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-metric-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  color: var(--booking-text-muted);
+}
+
+.booking-manager-trend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.booking-manager-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  min-width: 0;
+}
+
+.booking-manager-grid--config {
+  align-items: start;
+}
+
+.booking-manager-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.2rem;
+  border-radius: 1.45rem;
+  overflow: hidden;
+}
+
+.booking-manager-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.booking-manager-panel__title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--booking-text-main);
+  overflow-wrap: anywhere;
+}
+
+.booking-manager-stack,
+.booking-manager-activity-list,
+.booking-manager-reminder-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.booking-manager-list-card,
+.booking-manager-alert-card,
+.booking-manager-reminder-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.booking-manager-list-card__header,
+.booking-manager-alert-card__header,
+.booking-manager-activity-list__head,
+.booking-manager-service-card__header,
+.booking-manager-reminder-card__header,
+.booking-manager-integration-card__head,
+.booking-manager-appointment-card__header,
+.booking-manager-day-card__header,
+.booking-manager-brand-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.booking-manager-list-card__meta,
+.booking-manager-reminder-card__meta,
+.booking-manager-appointment-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+
+.booking-manager-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+.booking-manager-summary-tile p {
+  margin-top: 0.3rem;
+}
+
+.booking-manager-activity-list__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--booking-border);
+  background: rgba(248, 250, 252, 0.92);
+}
+
+.booking-manager-activity-list__icon {
+  background: #e6fffb;
+  color: #0f766e;
+}
+
+.booking-manager-activity-list__body {
+  display: grid;
+  gap: 0.24rem;
+  min-width: 0;
+}
+
+.booking-manager-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+}
+
+.booking-manager-day-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  min-width: 0;
+}
+
+.booking-manager-day-card__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.booking-manager-day-card__list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.booking-manager-appointment-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.95rem;
+  border-radius: 1rem;
+  border: 1px solid var(--booking-border);
+  background: #ffffff;
+}
+
+.booking-manager-appointment-card__heading {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.booking-manager-appointment-card__time {
+  font-weight: 700;
+}
+
+.booking-manager-day-empty {
+  display: grid;
+  place-items: center;
+  min-height: 7rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(248, 250, 252, 0.82);
+  color: var(--booking-text-soft);
+  text-align: center;
+}
+
+.booking-manager-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.booking-manager-inline-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  max-width: 100%;
+  min-height: 2.3rem;
+  padding: 0.55rem 0.82rem;
+  border-radius: 0.85rem;
+  background: #e7f9f6;
+  color: #0f766e;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.booking-manager-inline-button--ghost {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.booking-manager-inline-button--danger {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.booking-manager-table-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.booking-manager-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.booking-manager-table th,
+.booking-manager-table td {
+  padding: 0.95rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--booking-border);
+  vertical-align: top;
+}
+
+.booking-manager-table th {
+  color: var(--booking-text-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.booking-manager-table tbody tr:hover {
+  background: rgba(248, 250, 252, 0.7);
+}
+
+.booking-manager-table__primary {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.booking-manager-service-grid,
+.booking-manager-availability-grid,
+.booking-manager-block-grid,
+.booking-manager-integrations-grid,
+.booking-manager-field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.booking-manager-service-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.booking-manager-service-card__stats,
+.booking-manager-availability-card__rows {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.booking-manager-availability-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+}
+
+.booking-manager-availability-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.booking-manager-block-card {
+  display: grid;
+  gap: 0.24rem;
+}
+
+.booking-manager-reminder-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: flex-end;
+}
+
+.booking-manager-settings-grid {
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.booking-manager-brand-card {
+  padding: 1rem;
+  border-radius: 1.15rem;
+}
+
+.booking-manager-field-card {
+  min-width: 0;
+}
+
+.booking-manager-color-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+  margin-top: 0.35rem;
+}
+
+.booking-manager-color-preview__swatch {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.booking-manager-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.booking-manager-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.48rem 0.78rem;
+  border-radius: 999px;
+  background: #eefbf8;
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  color: #0f766e;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.booking-manager-integration-card {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1rem;
+}
+
+.booking-manager-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.booking-manager-badge--success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.booking-manager-badge--info {
+  background: #cffafe;
+  color: #155e75;
+}
+
+.booking-manager-badge--warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.booking-manager-badge--danger {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.booking-manager-badge--neutral {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.booking-manager-progress-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.booking-manager-progress-list__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.booking-manager-progress-list__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.booking-manager-progress-list__track {
+  height: 0.8rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.booking-manager-progress-list__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(15, 118, 110, 0.98), rgba(192, 132, 252, 0.92));
+}
+
+.booking-manager-progress-list__note {
+  font-size: 0.92rem;
+}
+
+.booking-manager-week-load {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.booking-manager-week-load__item {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.booking-manager-week-load__track {
+  display: flex;
+  align-items: flex-end;
+  min-height: 9.5rem;
+  padding: 0.65rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(148, 163, 184, 0.06), rgba(148, 163, 184, 0.02)),
+    #f8fafc;
+}
+
+.booking-manager-week-load__bar {
+  width: 100%;
+  border-radius: 0.75rem 0.75rem 0.4rem 0.4rem;
+  background: linear-gradient(180deg, rgba(15, 118, 110, 0.96), rgba(192, 132, 252, 0.86));
+}
+
+.booking-manager-week-load__meta {
+  display: grid;
+  gap: 0.12rem;
+  text-align: center;
+}
+
+.booking-manager-empty-state {
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+  min-height: 13rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.booking-manager-empty-state__icon {
+  background: #f1f5f9;
+  color: var(--booking-text-soft);
+}
+
+.booking-manager-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 70;
+  max-width: min(420px, calc(100vw - 2rem));
+  padding: 0.95rem 1.05rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.94);
+  color: #f8fafc;
+  box-shadow: 0 24px 44px rgba(15, 23, 42, 0.24);
+}
+
+@media (min-width: 760px) {
+  .booking-manager-banner,
+  .booking-manager-module-intro {
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+    align-items: center;
+  }
+
+  .booking-manager-topbar {
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.9fr);
+    align-items: center;
+  }
+
+  .booking-manager-topbar__actions {
+    grid-column: 1 / -1;
+  }
+
+  .booking-manager-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .booking-manager-panel--span-2,
+  .booking-manager-panel--span-3 {
+    grid-column: 1 / -1;
+  }
+
+  .booking-manager-settings-grid {
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 980px) {
+  .booking-manager-app-shell {
+    grid-template-columns: clamp(270px, 22vw, 338px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .booking-manager-sidebar {
+    position: sticky;
+    top: 12px;
+    width: clamp(270px, 22vw, 338px);
+    max-width: clamp(270px, 22vw, 338px);
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-self: start;
+  }
+
+  .booking-manager-sidebar__nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-manager-main {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+}
+
+@media (min-width: 1280px) {
+  .booking-manager-topbar {
+    grid-template-columns: minmax(260px, 0.95fr) minmax(260px, 0.8fr) minmax(0, auto);
+  }
+
+  .booking-manager-topbar__actions {
+    grid-column: auto;
+    justify-content: flex-end;
+  }
+
+  .booking-manager-topbar__button {
+    flex: 0 1 auto;
+  }
+
+  .booking-manager-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .booking-manager-panel--span-2 {
+    grid-column: span 2;
+  }
+
+  .booking-manager-panel--span-3 {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 899px) {
+  .booking-manager-sidebar__actions {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  .booking-manager-topbar__actions,
+  .booking-manager-sidebar__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-manager-inline-actions,
+  .booking-manager-list-card__header,
+  .booking-manager-alert-card__header,
+  .booking-manager-activity-list__head,
+  .booking-manager-reminder-card__header,
+  .booking-manager-day-card__header,
+  .booking-manager-service-card__header,
+  .booking-manager-availability-card__header,
+  .booking-manager-brand-card {
+    flex-direction: column;
+  }
+
+  .booking-manager-topbar__button,
+  .booking-manager-ghost-link,
+  .booking-manager-primary-link {
+    flex: initial;
+    width: 100%;
+  }
+
+  .booking-manager-table {
+    min-width: 720px;
+  }
+}
+
+@media (max-width: 520px) {
+  .booking-manager-app-shell {
+    padding: 10px;
+  }
+
+  .booking-manager-topbar,
+  .booking-manager-banner,
+  .booking-manager-module-intro,
+  .booking-manager-panel,
+  .booking-manager-metric-card,
+  .booking-manager-sidebar {
+    border-radius: 1.2rem;
+  }
+
+  .booking-manager-topbar,
+  .booking-manager-banner,
+  .booking-manager-module-intro,
+  .booking-manager-panel,
+  .booking-manager-sidebar {
+    padding: 0.9rem;
+  }
+
+  .booking-manager-sidebar__nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-manager-nav-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .booking-manager-nav-item__counter {
+    display: none;
+  }
+
+  .booking-manager-metric-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-manager-service-grid,
+  .booking-manager-availability-grid,
+  .booking-manager-block-grid,
+  .booking-manager-integrations-grid,
+  .booking-manager-field-grid,
+  .booking-manager-schedule-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,1226 @@
+.business-manager-demo {
+  --business-manager-primary-rgb: 15 118 110;
+  color-scheme: light;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(45, 212, 191, 0.18), transparent 26%),
+    radial-gradient(circle at right top, rgba(59, 130, 246, 0.12), transparent 24%),
+    linear-gradient(180deg, #f7fbfc 0%, #eff4f8 100%);
+  color: #0f172a;
+  font-family: 'Hanken Grotesk', 'Segoe UI', sans-serif;
+}
+
+.business-manager-demo *,
+.business-manager-demo *::before,
+.business-manager-demo *::after {
+  box-sizing: border-box;
+}
+
+.business-manager-demo button,
+.business-manager-demo input,
+.business-manager-demo a {
+  font: inherit;
+}
+
+.business-manager-demo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.business-manager-demo button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.business-manager-app-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  overflow-x: hidden;
+}
+
+.business-manager-overlay {
+  display: none;
+}
+
+.business-manager-sidebar {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at top, rgba(45, 212, 191, 0.18), transparent 28%),
+    linear-gradient(180deg, #07141f 0%, #0b1d2e 100%);
+  color: #e2f1f5;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: 0 20px 40px rgba(2, 8, 23, 0.16);
+  overflow: hidden;
+}
+
+.business-manager-sidebar__header h2 {
+  margin: 0.65rem 0 0.25rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  line-height: 1.05;
+  color: #f8fbff;
+}
+
+.business-manager-sidebar__header p,
+.business-manager-sidebar__footnote span,
+.business-manager-sidebar__business span,
+.business-manager-nav-item__content small {
+  margin: 0;
+  color: rgba(218, 233, 239, 0.74);
+  line-height: 1.55;
+}
+
+.business-manager-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  background: rgba(15, 118, 110, 0.1);
+  color: #0f766e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.business-manager-sidebar__header,
+.business-manager-sidebar__business > div,
+.business-manager-topbar__identity > div,
+.business-manager-brand-card > div,
+.business-manager-toggle-list__item > div {
+  min-width: 0;
+}
+
+.business-manager-sidebar .business-manager-pill {
+  border-color: rgba(110, 231, 226, 0.22);
+  background: rgba(45, 212, 191, 0.12);
+  color: #8cf4e7;
+}
+
+.business-manager-pill--subtle {
+  border-color: rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  color: #334155;
+}
+
+.business-manager-sidebar__business {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.95rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.business-manager-sidebar__brand-mark,
+.business-manager-brand-card__mark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.96), rgba(8, 145, 178, 0.92));
+  color: #f7fffe;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.business-manager-sidebar__business strong,
+.business-manager-sidebar__footnote strong {
+  display: block;
+  color: #f8fbff;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-sidebar__nav {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  min-width: 0;
+}
+
+.business-manager-nav-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  min-width: 0;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.72rem 0.8rem;
+  border-radius: 1rem;
+  text-align: left;
+  color: inherit;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+  border: 1px solid transparent;
+}
+
+.business-manager-nav-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(2px);
+}
+
+.business-manager-nav-item.is-active {
+  border-color: rgba(110, 231, 226, 0.24);
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.business-manager-nav-item__icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #c8fcf6;
+}
+
+.business-manager-nav-item.is-active .business-manager-nav-item__icon {
+  background: rgba(110, 231, 226, 0.18);
+  color: #f8fffe;
+}
+
+.business-manager-nav-item__icon svg,
+.business-manager-metric-card__icon svg,
+.business-manager-activity-list__icon svg,
+.business-manager-search__icon svg,
+.business-manager-topbar__menu svg,
+.business-manager-empty-state__icon svg,
+.business-manager-inline-button svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.business-manager-nav-item__content {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.business-manager-nav-item__content strong {
+  color: #f8fbff;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-nav-item__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  max-width: 100%;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d8eef4;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.business-manager-sidebar__footer {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.9rem;
+}
+
+.business-manager-sidebar__footnote,
+.business-manager-sidebar__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.75rem;
+}
+
+.business-manager-ghost-link,
+.business-manager-primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.88rem 1rem;
+  border-radius: 1rem;
+  font-weight: 700;
+}
+
+.business-manager-ghost-link {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.business-manager-primary-link {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 1), rgba(8, 145, 178, 0.94));
+  color: #f8fffe;
+  box-shadow: 0 18px 36px rgba(13, 148, 136, 0.2);
+}
+
+.business-manager-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.business-manager-topbar,
+.business-manager-banner,
+.business-manager-module-intro,
+.business-manager-panel,
+.business-manager-metric-card {
+  min-width: 0;
+  border: 1px solid rgba(203, 213, 225, 0.74);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.business-manager-topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 40;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0.95rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.business-manager-topbar__identity {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 0.9rem;
+}
+
+.business-manager-topbar__menu {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.9rem;
+  background: #f1f5f9;
+  color: #0f172a;
+  flex-shrink: 0;
+}
+
+.business-manager-topbar__eyebrow {
+  margin: 0;
+  color: #0f766e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.business-manager-topbar h1,
+.business-manager-module-intro h2,
+.business-manager-banner h2,
+.business-manager-empty-state h3 {
+  margin: 0.22rem 0 0.24rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.04;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-topbar__identity p,
+.business-manager-module-intro p,
+.business-manager-banner p,
+.business-manager-empty-state p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-topbar > *,
+.business-manager-banner > *,
+.business-manager-module-intro > * {
+  min-width: 0;
+}
+
+.business-manager-search {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  gap: 0.75rem;
+  min-height: 3.1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 1.05rem;
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  background: #f8fbfc;
+}
+
+.business-manager-search__icon {
+  display: inline-flex;
+  color: #64748b;
+}
+
+.business-manager-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #0f172a;
+  outline: none;
+}
+
+.business-manager-search input::placeholder {
+  color: #94a3b8;
+}
+
+.business-manager-topbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 0.7rem;
+}
+
+.business-manager-topbar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 180px;
+  max-width: 100%;
+  min-height: 2.85rem;
+  padding: 0.78rem 1rem;
+  border-radius: 0.95rem;
+  background: #e2f3f1;
+  color: #0f766e;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+}
+
+.business-manager-topbar__button--ghost {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.business-manager-topbar__button--primary {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 1), rgba(8, 145, 178, 0.94));
+  color: #f7fffe;
+  box-shadow: 0 16px 30px rgba(15, 118, 110, 0.18);
+}
+
+.business-manager-banner {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.35rem;
+  border-radius: 1.75rem;
+  background:
+    radial-gradient(circle at top right, rgba(45, 212, 191, 0.12), transparent 26%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(247, 251, 252, 0.94));
+}
+
+.business-manager-banner__aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.8rem;
+}
+
+.business-manager-banner__stat,
+.business-manager-module-intro__stats > div {
+  padding: 0.95rem 1rem;
+  border-radius: 1.2rem;
+  background: rgba(248, 250, 252, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.72);
+}
+
+.business-manager-banner__stat span,
+.business-manager-module-intro__stats span,
+.business-manager-field-card span,
+.business-manager-summary-list__item p,
+.business-manager-progress-list__item span,
+.business-manager-line-chart__item span,
+.business-manager-bar-chart__meta span,
+.business-manager-metric-card__label,
+.business-manager-panel__subtitle,
+.business-manager-appointment-card__meta span,
+.business-manager-table__primary span {
+  display: block;
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.business-manager-banner__stat strong,
+.business-manager-module-intro__stats strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.15rem;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-module-intro {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.2rem 1.35rem;
+  border-radius: 1.6rem;
+}
+
+.business-manager-module-intro__stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.8rem;
+}
+
+.business-manager-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.business-manager-metrics-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.business-manager-metrics-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.business-manager-metric-card {
+  --metric-accent: rgba(148, 163, 184, 0.6);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-width: 0;
+  gap: 1rem;
+  padding: 1.15rem;
+  border-radius: 1.4rem;
+  border-top: 4px solid var(--metric-accent);
+}
+
+.business-manager-metric-card--neutral {
+  --metric-accent: rgba(59, 130, 246, 0.7);
+}
+
+.business-manager-metric-card--success {
+  --metric-accent: rgba(16, 185, 129, 0.85);
+}
+
+.business-manager-metric-card--info {
+  --metric-accent: rgba(8, 145, 178, 0.85);
+}
+
+.business-manager-metric-card--warning {
+  --metric-accent: rgba(245, 158, 11, 0.9);
+}
+
+.business-manager-metric-card--danger {
+  --metric-accent: rgba(239, 68, 68, 0.9);
+}
+
+.business-manager-metric-card__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--metric-accent) 16%, #ffffff);
+  color: #0f766e;
+}
+
+.business-manager-metric-card__value {
+  margin: 0.35rem 0 0.4rem;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  line-height: 1.02;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-metric-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  color: #475569;
+}
+
+.business-manager-trend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.business-manager-dashboard-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.business-manager-dashboard-grid--config {
+  align-items: start;
+}
+
+.business-manager-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.2rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.business-manager-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 0.8rem;
+}
+
+.business-manager-panel__title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.business-manager-stack,
+.business-manager-summary-list,
+.business-manager-activity-list,
+.business-manager-appointment-list,
+.business-manager-toggle-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.85rem;
+}
+
+.business-manager-alert-card,
+.business-manager-task-card,
+.business-manager-summary-list__item,
+.business-manager-activity-list__item,
+.business-manager-appointment-card,
+.business-manager-brand-card,
+.business-manager-field-card,
+.business-manager-toggle-list__item,
+.business-manager-integration-card,
+.business-manager-empty-state {
+  border-radius: 1.15rem;
+  border: 1px solid rgba(203, 213, 225, 0.74);
+  background: rgba(248, 250, 252, 0.92);
+}
+
+.business-manager-alert-card,
+.business-manager-task-card,
+.business-manager-summary-list__item,
+.business-manager-activity-list__item,
+.business-manager-appointment-card,
+.business-manager-integration-card {
+  padding: 1rem;
+}
+
+.business-manager-alert-card__header,
+.business-manager-appointment-card__header,
+.business-manager-integration-card__head,
+.business-manager-task-card__meta,
+.business-manager-summary-list__item,
+.business-manager-activity-list__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.business-manager-alert-card p,
+.business-manager-task-card p,
+.business-manager-activity-list__body p,
+.business-manager-brand-card p,
+.business-manager-field-card p,
+.business-manager-integration-card p,
+.business-manager-progress-list__note,
+.business-manager-empty-state p,
+.business-manager-appointment-card__body p {
+  margin: 0.32rem 0 0;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.business-manager-table-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.business-manager-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.business-manager-table th,
+.business-manager-table td {
+  padding: 0.95rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.92);
+  vertical-align: top;
+}
+
+.business-manager-table th {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.business-manager-table tbody tr:hover {
+  background: rgba(248, 250, 252, 0.7);
+}
+
+.business-manager-table__primary {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.business-manager-table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 0.55rem;
+}
+
+.business-manager-inline-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 100%;
+  min-height: 2.3rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.85rem;
+  background: #e6fffb;
+  color: #0f766e;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.business-manager-inline-button--ghost {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.business-manager-inline-button--danger {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.business-manager-appointment-card {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+}
+
+.business-manager-appointment-card__time {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  padding: 0.45rem 0.72rem;
+  border-radius: 999px;
+  background: #ecfeff;
+  color: #0f766e;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.business-manager-appointment-card__body {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.business-manager-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.business-manager-badge--success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.business-manager-badge--info {
+  background: #cffafe;
+  color: #155e75;
+}
+
+.business-manager-badge--warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.business-manager-badge--danger {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.business-manager-badge--neutral {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.business-manager-line-chart {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.8rem;
+}
+
+.business-manager-line-chart__svg {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+}
+
+.business-manager-line-chart__footer {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.business-manager-line-chart__item strong,
+.business-manager-bar-chart__meta strong,
+.business-manager-progress-list__header strong,
+.business-manager-summary-list__item strong,
+.business-manager-brand-card strong,
+.business-manager-field-card strong,
+.business-manager-toggle-list__item strong,
+.business-manager-integration-card strong {
+  color: #0f172a;
+}
+
+.business-manager-bar-chart {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  min-width: 0;
+}
+
+.business-manager-bar-chart__item {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.business-manager-bar-chart__track {
+  display: flex;
+  align-items: flex-end;
+  min-height: 11rem;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(148, 163, 184, 0.06), rgba(148, 163, 184, 0.02)),
+    #f8fafc;
+}
+
+.business-manager-bar-chart__bar {
+  width: 100%;
+  border-radius: 0.8rem 0.8rem 0.55rem 0.55rem;
+  background: linear-gradient(180deg, rgba(45, 212, 191, 0.92), rgba(8, 145, 178, 0.96));
+}
+
+.business-manager-bar-chart__meta {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.business-manager-progress-list__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.55rem;
+}
+
+.business-manager-progress-list__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.business-manager-progress-list__track {
+  height: 0.8rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.business-manager-progress-list__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(15, 118, 110, 0.98), rgba(8, 145, 178, 0.94));
+}
+
+.business-manager-activity-list__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+}
+
+.business-manager-activity-list__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 1rem;
+  background: #e6fffb;
+  color: #0f766e;
+}
+
+.business-manager-activity-list__body {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.business-manager-settings-grid,
+.business-manager-field-grid,
+.business-manager-integrations-grid {
+  display: grid;
+  min-width: 0;
+  gap: 0.9rem;
+}
+
+.business-manager-brand-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.business-manager-field-card {
+  padding: 1rem;
+}
+
+.business-manager-color-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+}
+
+.business-manager-color-preview__swatch {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.42);
+}
+
+.business-manager-toggle-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.business-manager-switch {
+  position: relative;
+  display: inline-flex;
+  width: 3.25rem;
+  height: 1.9rem;
+  padding: 0.18rem;
+  border-radius: 999px;
+  background: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.business-manager-switch span {
+  width: 1.54rem;
+  height: 1.54rem;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  transition: transform 180ms ease;
+}
+
+.business-manager-switch.is-on {
+  background: linear-gradient(90deg, rgba(15, 118, 110, 0.88), rgba(8, 145, 178, 0.88));
+}
+
+.business-manager-switch.is-on span {
+  transform: translateX(1.35rem);
+}
+
+.business-manager-integrations-grid {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.business-manager-empty-state {
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+  min-height: 14rem;
+  padding: 1.3rem;
+  text-align: center;
+}
+
+.business-manager-empty-state__icon {
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 1rem;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.business-manager-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  max-width: min(420px, calc(100vw - 2rem));
+  padding: 0.95rem 1.05rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.94);
+  color: #f8fafc;
+  box-shadow: 0 24px 44px rgba(15, 23, 42, 0.24);
+}
+
+@media (min-width: 700px) {
+  .business-manager-banner,
+  .business-manager-module-intro {
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+    align-items: center;
+  }
+
+  .business-manager-topbar {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.9fr);
+    align-items: center;
+  }
+
+  .business-manager-topbar__actions {
+    grid-column: 1 / -1;
+  }
+
+  .business-manager-field-grid,
+  .business-manager-integrations-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .business-manager-app-shell {
+    grid-template-columns: clamp(260px, 22vw, 340px) minmax(0, 1fr);
+    gap: 0.9rem;
+    align-items: start;
+  }
+
+  .business-manager-sidebar {
+    position: sticky;
+    top: 12px;
+    width: clamp(260px, 22vw, 340px);
+    max-width: clamp(260px, 22vw, 340px);
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 1.8rem;
+    padding: 0.95rem;
+    gap: 0.85rem;
+    align-self: start;
+  }
+
+  .business-manager-sidebar__nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .business-manager-main {
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .business-manager-topbar {
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  }
+
+  .business-manager-topbar__actions {
+    grid-column: 1 / -1;
+  }
+
+  .business-manager-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+.business-manager-panel--span-2 {
+    grid-column: 1 / -1;
+  }
+
+  .business-manager-panel--span-3 {
+    grid-column: 1 / -1;
+  }
+
+  .business-manager-settings-grid {
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+@media (min-width: 1280px) {
+  .business-manager-topbar {
+    grid-template-columns: minmax(280px, 0.95fr) minmax(260px, 0.8fr) minmax(0, auto);
+  }
+
+  .business-manager-topbar__actions {
+    grid-column: auto;
+    justify-content: flex-end;
+  }
+
+  .business-manager-topbar__button {
+    flex: 0 1 auto;
+  }
+
+  .business-manager-dashboard-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .business-manager-panel--span-2 {
+    grid-column: span 2;
+  }
+
+  .business-manager-panel--span-3 {
+    grid-column: span 3;
+  }
+
+  .business-manager-bar-chart {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .business-manager-sidebar__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .business-manager-sidebar__actions {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  .business-manager-line-chart__footer {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .business-manager-topbar__actions,
+  .business-manager-sidebar__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .business-manager-bar-chart {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .business-manager-progress-list__header,
+  .business-manager-alert-card__header,
+  .business-manager-summary-list__item,
+  .business-manager-appointment-card__header,
+  .business-manager-integration-card__head,
+  .business-manager-activity-list__head {
+    flex-direction: column;
+  }
+
+  .business-manager-topbar__button,
+  .business-manager-ghost-link,
+  .business-manager-primary-link {
+    flex: initial;
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .business-manager-app-shell {
+    padding: 10px;
+  }
+
+  .business-manager-topbar,
+  .business-manager-banner,
+  .business-manager-module-intro,
+  .business-manager-panel,
+  .business-manager-metric-card,
+  .business-manager-sidebar {
+    border-radius: 1.2rem;
+  }
+
+  .business-manager-topbar,
+  .business-manager-banner,
+  .business-manager-module-intro,
+  .business-manager-panel,
+  .business-manager-sidebar {
+    padding: 0.9rem;
+  }
+
+  .business-manager-metric-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .business-manager-nav-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .business-manager-nav-item__counter {
+    display: none;
+  }
+
+  .business-manager-sidebar__nav,
+  .business-manager-sidebar__actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .business-manager-bar-chart {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

@@ -1,5 +1,125 @@
 export const demos = [
   {
+    slug: 'restaurant-manager',
+    path: 'restaurant-manager/',
+    name: 'ByteShark Restaurant Manager',
+    businessName: 'ByteShark Restaurant Manager',
+    category: 'Sistema administrativo para restaurante, cafeteria y operacion diaria',
+    problem:
+      'Muestra como un restaurante o cafeteria puede administrar pedidos, menu, reservaciones, cocina, clientes, promociones y reportes desde una sola interfaz operativa.',
+    ctaLabel: 'Abrir demo',
+    accent: {
+      from: '#4a2c24',
+      to: '#d7a651',
+      halo: 'rgba(215, 166, 81, 0.22)',
+      surface: 'rgba(74, 44, 36, 0.1)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '524614220738',
+        message:
+          'Hola ByteShark, vi la demo ByteShark Restaurant Manager y quiero solicitar un sistema similar para mi negocio.',
+      },
+    },
+    highlights: ['Pedidos', 'Menu', 'Reservaciones', 'Cocina', 'Clientes', 'Promociones'],
+  },
+  {
+    slug: 'real-estate-manager',
+    path: 'real-estate-manager/',
+    name: 'ByteShark Real Estate Manager',
+    businessName: 'ByteShark Real Estate Manager',
+    category: 'Sistema inmobiliario / CRM para propiedades y oportunidades',
+    problem:
+      'Muestra como una operacion inmobiliaria puede administrar propiedades, prospectos, evaluacion, remodelacion, documentos y finanzas desde una sola herramienta interna.',
+    ctaLabel: 'Abrir demo',
+    accent: {
+      from: '#204a38',
+      to: '#c7a56d',
+      halo: 'rgba(199, 165, 109, 0.2)',
+      surface: 'rgba(32, 74, 56, 0.1)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '524614220738',
+        message:
+          'Hola ByteShark, vi la demo ByteShark Real Estate Manager y quiero solicitar un sistema similar para mi negocio.',
+      },
+    },
+    highlights: ['Propiedades', 'Prospectos', 'Evaluacion', 'Remodelacion', 'Documentos', 'Finanzas'],
+  },
+  {
+    slug: 'stock-manager',
+    path: 'stock-manager/',
+    name: 'ByteShark Stock Manager',
+    businessName: 'ByteShark Stock Manager',
+    category: 'Inventario, ventas y control de stock para negocios locales',
+    problem:
+      'Muestra como un negocio puede centralizar inventario, productos, ventas, proveedores, reposicion y reportes basicos desde una sola interfaz administrativa.',
+    ctaLabel: 'Abrir demo',
+    accent: {
+      from: '#c87b1f',
+      to: '#0f766e',
+      halo: 'rgba(200, 123, 31, 0.22)',
+      surface: 'rgba(200, 123, 31, 0.1)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '524614220738',
+        message:
+          'Hola ByteShark, vi la demo ByteShark Stock Manager y quiero solicitar un sistema similar para mi negocio.',
+      },
+    },
+    highlights: ['Inventario', 'Ventas', 'Productos', 'Proveedores', 'Stock bajo', 'Reportes'],
+  },
+  {
+    slug: 'booking-manager',
+    path: 'booking-manager/',
+    name: 'ByteShark Booking Manager',
+    businessName: 'ByteShark Booking Manager',
+    category: 'Agenda y citas para negocios locales',
+    problem:
+      'Muestra como un negocio puede administrar citas, clientes, servicios, disponibilidad y recordatorios desde una agenda central moderna.',
+    ctaLabel: 'Abrir demo',
+    accent: {
+      from: '#0f766e',
+      to: '#c084fc',
+      halo: 'rgba(192, 132, 252, 0.22)',
+      surface: 'rgba(15, 118, 110, 0.1)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '524614220738',
+        message:
+          'Hola ByteShark, vi la demo ByteShark Booking Manager y quiero solicitar un sistema similar para mi negocio.',
+      },
+    },
+    highlights: ['Agenda', 'Clientes', 'Servicios', 'Disponibilidad', 'Recordatorios', 'Historial'],
+  },
+  {
+    slug: 'business-manager',
+    path: 'business-manager/',
+    name: 'ByteShark Business Manager',
+    businessName: 'ByteShark Business Manager',
+    category: 'ERP / CRM demo para negocios locales',
+    problem:
+      'Muestra como un negocio puede centralizar clientes, ventas, citas, cobranza y reportes en una sola interfaz administrativa moderna.',
+    ctaLabel: 'Abrir demo',
+    accent: {
+      from: '#0f766e',
+      to: '#0ea5e9',
+      halo: 'rgba(14, 165, 233, 0.26)',
+      surface: 'rgba(15, 118, 110, 0.12)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '524614220738',
+        message:
+          'Hola ByteShark, vi la demo ByteShark Business Manager y quiero solicitar un sistema similar para mi negocio.',
+      },
+    },
+    highlights: ['Dashboard', 'Clientes', 'Ventas', 'Citas', 'Cobranza', 'Reportes'],
+  },
+  {
     slug: 'barberia',
     path: 'barberia/',
     name: 'G&G Barber Studio',

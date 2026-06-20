@@ -1,0 +1,1372 @@
+.restaurant-manager-demo {
+  --restaurant-text-main: #221815;
+  --restaurant-text-muted: #5d5048;
+  --restaurant-text-soft: #7b6d61;
+  --restaurant-border: #e4d8cb;
+  --restaurant-surface: rgba(255, 249, 241, 0.86);
+  --restaurant-surface-strong: rgba(255, 252, 247, 0.96);
+  color-scheme: light;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(215, 166, 81, 0.18), transparent 24%),
+    radial-gradient(circle at top right, rgba(83, 116, 92, 0.14), transparent 20%),
+    linear-gradient(180deg, #f6eee2 0%, #f5efe7 44%, #eef2eb 100%);
+  color: var(--restaurant-text-main);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+.restaurant-manager-demo *,
+.restaurant-manager-demo *::before,
+.restaurant-manager-demo *::after {
+  box-sizing: border-box;
+}
+
+.restaurant-manager-demo a,
+.restaurant-manager-demo button,
+.restaurant-manager-demo input {
+  font: inherit;
+}
+
+.restaurant-manager-demo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.restaurant-manager-demo button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.restaurant-manager-app-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  overflow-x: hidden;
+}
+
+.restaurant-manager-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  width: 100%;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(circle at top right, rgba(215, 166, 81, 0.16), transparent 24%),
+    linear-gradient(180deg, rgba(45, 29, 24, 0.98), rgba(29, 20, 17, 0.98));
+  box-shadow:
+    0 24px 42px rgba(34, 24, 21, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.restaurant-manager-sidebar__header,
+.restaurant-manager-sidebar__business,
+.restaurant-manager-sidebar__summary,
+.restaurant-manager-sidebar__nav,
+.restaurant-manager-sidebar__footer,
+.restaurant-manager-sidebar__actions,
+.restaurant-manager-sidebar__footnote {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.restaurant-manager-sidebar__header,
+.restaurant-manager-sidebar__business > div,
+.restaurant-manager-topbar__identity > div,
+.restaurant-manager-brand-card > div,
+.restaurant-manager-list-card__header > div,
+.restaurant-manager-alert-card__header > div,
+.restaurant-manager-product-card__header > div,
+.restaurant-manager-promo-card__header > div,
+.restaurant-manager-reservation-card__header > div,
+.restaurant-manager-table-card__header > div,
+.restaurant-manager-kitchen-card__header > div,
+.restaurant-manager-board-column__header > div {
+  min-width: 0;
+}
+
+.restaurant-manager-sidebar__header h2 {
+  margin: 0.65rem 0 0.35rem;
+  font-size: clamp(1.32rem, 2.5vw, 1.78rem);
+  line-height: 1.02;
+  color: #fff9f2;
+}
+
+.restaurant-manager-sidebar__header p,
+.restaurant-manager-sidebar__footnote span,
+.restaurant-manager-sidebar__business span,
+.restaurant-manager-nav-item__content small {
+  margin: 0;
+  color: rgba(239, 230, 219, 0.72);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.restaurant-manager-list-card p,
+.restaurant-manager-alert-card p,
+.restaurant-manager-product-card p,
+.restaurant-manager-promo-card p,
+.restaurant-manager-reservation-card p,
+.restaurant-manager-table-card p,
+.restaurant-manager-kitchen-card p,
+.restaurant-manager-empty-state p,
+.restaurant-manager-panel__subtitle,
+.restaurant-manager-activity-list__body p,
+.restaurant-manager-progress-list__header p,
+.restaurant-manager-integration-card p,
+.restaurant-manager-summary-card p {
+  margin: 0;
+  color: var(--restaurant-text-muted);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.36rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 106, 72, 0.16);
+  background: rgba(215, 166, 81, 0.12);
+  color: #8f6024;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.restaurant-manager-pill--soft {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff8f1;
+}
+
+.restaurant-manager-pill--muted {
+  border-color: rgba(215, 166, 81, 0.16);
+  background: rgba(215, 166, 81, 0.08);
+  color: #85561e;
+}
+
+.restaurant-manager-pill--dark {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 248, 239, 0.88);
+}
+
+.restaurant-manager-sidebar__business {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 0.92rem;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.restaurant-manager-sidebar__mark,
+.restaurant-manager-brand-card__mark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(215, 166, 81, 1), rgba(83, 116, 92, 0.95));
+  color: #fdf8f2;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.restaurant-manager-sidebar__business strong,
+.restaurant-manager-sidebar__footnote strong,
+.restaurant-manager-nav-item__content strong {
+  display: block;
+  color: #fff9f3;
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-sidebar__summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.restaurant-manager-sidebar__summary-card {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.86rem 0.9rem;
+  border-radius: 1.08rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.restaurant-manager-sidebar__summary-card span {
+  display: block;
+  color: rgba(241, 233, 224, 0.72);
+  font-size: 0.78rem;
+}
+
+.restaurant-manager-sidebar__summary-card strong {
+  color: #fff8f1;
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-sidebar__nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.restaurant-manager-nav-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.78rem;
+  min-width: 0;
+  width: 100%;
+  padding: 0.82rem 0.86rem;
+  border-radius: 1.08rem;
+  border: 1px solid transparent;
+  text-align: left;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.restaurant-manager-nav-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.restaurant-manager-nav-item.is-active {
+  border-color: rgba(215, 166, 81, 0.3);
+  background:
+    linear-gradient(135deg, rgba(215, 166, 81, 0.22), rgba(83, 116, 92, 0.16)),
+    rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 24px rgba(12, 8, 7, 0.2);
+}
+
+.restaurant-manager-nav-item__icon,
+.restaurant-manager-metric-card__icon,
+.restaurant-manager-activity-list__icon,
+.restaurant-manager-empty-state__icon {
+  display: grid;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 248, 239, 0.88);
+  flex-shrink: 0;
+}
+
+.restaurant-manager-nav-item.is-active .restaurant-manager-nav-item__icon {
+  background: linear-gradient(135deg, rgba(215, 166, 81, 1), rgba(83, 116, 92, 0.94));
+  color: #fff9f2;
+}
+
+.restaurant-manager-nav-item__icon svg,
+.restaurant-manager-metric-card__icon svg,
+.restaurant-manager-activity-list__icon svg,
+.restaurant-manager-search__icon svg,
+.restaurant-manager-empty-state__icon svg,
+.restaurant-manager-inline-button svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.restaurant-manager-nav-item__content {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.restaurant-manager-nav-item__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.45rem;
+  max-width: 100%;
+  padding: 0.3rem 0.56rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  color: rgba(248, 239, 228, 0.88);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.restaurant-manager-sidebar__footer {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: auto;
+}
+
+.restaurant-manager-sidebar__footnote,
+.restaurant-manager-sidebar__actions {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.restaurant-manager-ghost-link,
+.restaurant-manager-primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.95rem;
+  padding: 0.86rem 1rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.restaurant-manager-ghost-link {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 248, 239, 0.9);
+}
+
+.restaurant-manager-primary-link {
+  background: linear-gradient(135deg, rgba(215, 166, 81, 1), rgba(83, 116, 92, 0.92));
+  color: #fffaf4;
+  box-shadow: 0 18px 32px rgba(24, 17, 14, 0.24);
+}
+
+.restaurant-manager-sidebar .restaurant-manager-sidebar__summary-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.restaurant-manager-sidebar .restaurant-manager-ghost-link {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff5eb;
+}
+
+.restaurant-manager-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.restaurant-manager-topbar,
+.restaurant-manager-module-intro,
+.restaurant-manager-panel,
+.restaurant-manager-metric-card {
+  min-width: 0;
+  border: 1px solid var(--restaurant-border);
+  background: var(--restaurant-surface);
+  box-shadow:
+    0 20px 40px rgba(56, 40, 34, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.46);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.restaurant-manager-topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1.56rem;
+  overflow: hidden;
+}
+
+.restaurant-manager-topbar__identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.restaurant-manager-topbar__eyebrow {
+  margin: 0;
+  color: #99642b;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.restaurant-manager-topbar h1,
+.restaurant-manager-module-intro h2,
+.restaurant-manager-empty-state h3 {
+  margin: 0.24rem 0 0.24rem;
+  font-size: clamp(1.5rem, 3vw, 2.12rem);
+  line-height: 1.04;
+  color: var(--restaurant-text-main);
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-topbar p,
+.restaurant-manager-module-intro p,
+.restaurant-manager-empty-state p {
+  margin: 0;
+  color: var(--restaurant-text-muted);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-topbar > *,
+.restaurant-manager-module-intro > * {
+  min-width: 0;
+}
+
+.restaurant-manager-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 3.1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 1rem;
+  border: 1px solid var(--restaurant-border);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.restaurant-manager-search__icon {
+  display: inline-flex;
+  color: var(--restaurant-text-soft);
+}
+
+.restaurant-manager-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--restaurant-text-main);
+  outline: none;
+}
+
+.restaurant-manager-search input::placeholder {
+  color: #9f9183;
+}
+
+.restaurant-manager-topbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.restaurant-manager-topbar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 180px;
+  max-width: 100%;
+  min-height: 2.9rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.98rem;
+  background: rgba(215, 166, 81, 0.14);
+  color: #87561e;
+  font-weight: 800;
+  line-height: 1.24;
+  text-align: center;
+  white-space: normal;
+}
+
+.restaurant-manager-topbar__button--ghost {
+  background: rgba(34, 24, 21, 0.06);
+  color: #4a3b31;
+}
+
+.restaurant-manager-topbar__button--primary {
+  background: linear-gradient(135deg, rgba(74, 44, 36, 1), rgba(215, 166, 81, 0.96));
+  color: #fff8f2;
+  box-shadow: 0 16px 28px rgba(61, 39, 31, 0.16);
+}
+
+.restaurant-manager-banner {
+  display: grid;
+  gap: 1rem;
+  padding: 1.36rem;
+  border-radius: 1.8rem;
+  min-width: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(215, 166, 81, 0.3), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(83, 116, 92, 0.18), transparent 22%),
+    linear-gradient(135deg, #311f1a 0%, #493127 56%, #1f1714 100%);
+  box-shadow: 0 26px 46px rgba(35, 23, 19, 0.18);
+}
+
+.restaurant-manager-banner__content h2 {
+  margin: 0.25rem 0 0.3rem;
+  font-size: clamp(1.56rem, 3vw, 2.2rem);
+  line-height: 1.04;
+  color: #fff8f2;
+}
+
+.restaurant-manager-banner__content p {
+  margin: 0;
+  color: rgba(239, 230, 219, 0.84);
+  line-height: 1.7;
+}
+
+.restaurant-manager-banner__stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.restaurant-manager-banner__stat,
+.restaurant-manager-module-intro__stats > div,
+.restaurant-manager-sidebar__summary-card,
+.restaurant-manager-list-card,
+.restaurant-manager-alert-card,
+.restaurant-manager-product-card,
+.restaurant-manager-promo-card,
+.restaurant-manager-reservation-card,
+.restaurant-manager-table-card,
+.restaurant-manager-kitchen-card,
+.restaurant-manager-summary-card,
+.restaurant-manager-empty-state,
+.restaurant-manager-brand-card,
+.restaurant-manager-field-card,
+.restaurant-manager-integration-card {
+  border-radius: 1.15rem;
+  border: 1px solid var(--restaurant-border);
+  background: var(--restaurant-surface-strong);
+}
+
+.restaurant-manager-banner__stat {
+  padding: 0.95rem 1rem;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.restaurant-manager-banner__stat span {
+  display: block;
+  color: rgba(237, 229, 220, 0.76);
+  font-size: 0.82rem;
+}
+
+.restaurant-manager-banner__stat strong {
+  display: block;
+  margin-top: 0.24rem;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-module-intro {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem 1.36rem;
+  border-radius: 1.65rem;
+}
+
+.restaurant-manager-module-intro__stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.restaurant-manager-module-intro__stats > div {
+  padding: 0.92rem 1rem;
+}
+
+.restaurant-manager-module-intro__stats span,
+.restaurant-manager-metric-card__body span,
+.restaurant-manager-list-card__meta span,
+.restaurant-manager-reservation-card__meta span,
+.restaurant-manager-kitchen-card__meta span,
+.restaurant-manager-product-card__stats span,
+.restaurant-manager-table__primary span,
+.restaurant-manager-progress-list__header span,
+.restaurant-manager-chart__meta span,
+.restaurant-manager-summary-card__header span,
+.restaurant-manager-promo-card__hero span,
+.restaurant-manager-promo-card__footer span {
+  display: block;
+  color: var(--restaurant-text-soft);
+  font-size: 0.82rem;
+}
+
+.restaurant-manager-module-intro__stats strong,
+.restaurant-manager-panel__title,
+.restaurant-manager-list-card strong,
+.restaurant-manager-alert-card strong,
+.restaurant-manager-product-card strong,
+.restaurant-manager-promo-card strong,
+.restaurant-manager-reservation-card strong,
+.restaurant-manager-table-card strong,
+.restaurant-manager-kitchen-card strong,
+.restaurant-manager-brand-card strong,
+.restaurant-manager-field-card strong,
+.restaurant-manager-integration-card strong,
+.restaurant-manager-progress-list__header strong,
+.restaurant-manager-chart__meta strong,
+.restaurant-manager-summary-card__header strong {
+  color: var(--restaurant-text-main);
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.restaurant-manager-metrics-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.restaurant-manager-metrics-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.restaurant-manager-metric-card {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.12rem;
+  border-radius: 1.42rem;
+  border-top: 4px solid rgba(148, 163, 184, 0.5);
+}
+
+.restaurant-manager-metric-card--neutral {
+  border-top-color: rgba(100, 116, 139, 0.72);
+}
+
+.restaurant-manager-metric-card--info {
+  border-top-color: rgba(83, 116, 92, 0.82);
+}
+
+.restaurant-manager-metric-card--success {
+  border-top-color: rgba(22, 163, 74, 0.72);
+}
+
+.restaurant-manager-metric-card--warning {
+  border-top-color: rgba(217, 119, 6, 0.9);
+}
+
+.restaurant-manager-metric-card--danger {
+  border-top-color: rgba(190, 24, 93, 0.8);
+}
+
+.restaurant-manager-metric-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.restaurant-manager-metric-card__icon {
+  background: rgba(74, 44, 36, 0.08);
+  color: #6f4a32;
+}
+
+.restaurant-manager-metric-card__body {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.restaurant-manager-metric-card__body strong {
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  line-height: 1.02;
+  color: var(--restaurant-text-main);
+  overflow-wrap: anywhere;
+}
+
+.restaurant-manager-metric-card__body p {
+  margin: 0;
+  color: var(--restaurant-text-muted);
+}
+
+.restaurant-manager-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  min-width: 0;
+}
+
+.restaurant-manager-grid--config {
+  align-items: start;
+}
+
+.restaurant-manager-panel {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.2rem;
+  border-radius: 1.56rem;
+  overflow: hidden;
+}
+
+.restaurant-manager-panel__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.restaurant-manager-panel__title {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.restaurant-manager-stack,
+.restaurant-manager-activity-list {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.restaurant-manager-list-card,
+.restaurant-manager-alert-card,
+.restaurant-manager-product-card,
+.restaurant-manager-promo-card,
+.restaurant-manager-reservation-card,
+.restaurant-manager-kitchen-card {
+  display: grid;
+  gap: 0.82rem;
+  padding: 1rem;
+}
+
+.restaurant-manager-list-card__header,
+.restaurant-manager-alert-card__header,
+.restaurant-manager-product-card__header,
+.restaurant-manager-promo-card__header,
+.restaurant-manager-reservation-card__header,
+.restaurant-manager-table-card__header,
+.restaurant-manager-kitchen-card__header,
+.restaurant-manager-activity-list__head,
+.restaurant-manager-integration-card__header,
+.restaurant-manager-brand-card,
+.restaurant-manager-summary-card__header,
+.restaurant-manager-board-column__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.restaurant-manager-list-card__meta,
+.restaurant-manager-reservation-card__meta,
+.restaurant-manager-kitchen-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+}
+
+.restaurant-manager-activity-list__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--restaurant-border);
+  background: var(--restaurant-surface-strong);
+}
+
+.restaurant-manager-activity-list__icon {
+  background: rgba(83, 116, 92, 0.12);
+  color: #4f6e58;
+}
+
+.restaurant-manager-activity-list__body {
+  display: grid;
+  gap: 0.24rem;
+  min-width: 0;
+}
+
+.restaurant-manager-summary-grid,
+.restaurant-manager-product-grid,
+.restaurant-manager-promo-grid,
+.restaurant-manager-reservation-grid,
+.restaurant-manager-table-grid,
+.restaurant-manager-integration-grid,
+.restaurant-manager-field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.restaurant-manager-summary-card,
+.restaurant-manager-product-card,
+.restaurant-manager-promo-card,
+.restaurant-manager-table-card,
+.restaurant-manager-brand-card,
+.restaurant-manager-field-card,
+.restaurant-manager-integration-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  min-width: 0;
+}
+
+.restaurant-manager-summary-card__track,
+.restaurant-manager-progress-list__track {
+  height: 0.82rem;
+  border-radius: 999px;
+  background: #ebe3d8;
+  overflow: hidden;
+}
+
+.restaurant-manager-summary-card__bar,
+.restaurant-manager-progress-list__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(215, 166, 81, 0.98), rgba(83, 116, 92, 0.92));
+}
+
+.restaurant-manager-product-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: flex-end;
+}
+
+.restaurant-manager-product-card__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.72rem;
+}
+
+.restaurant-manager-product-card__stats strong {
+  display: block;
+  margin-top: 0.24rem;
+}
+
+.restaurant-manager-promo-card__hero {
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, rgba(215, 166, 81, 0.16), rgba(83, 116, 92, 0.08)),
+    #fff9f2;
+}
+
+.restaurant-manager-promo-card__hero strong {
+  font-size: 1.5rem;
+}
+
+.restaurant-manager-promo-card__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.restaurant-manager-table-card {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.restaurant-manager-board {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  min-width: 0;
+}
+
+.restaurant-manager-board-column {
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid var(--restaurant-border);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 246, 0.96), rgba(252, 247, 240, 0.98)),
+    #fffdf9;
+}
+
+.restaurant-manager-board-column__header p,
+.restaurant-manager-board-column__header span {
+  margin: 0;
+  color: var(--restaurant-text-soft);
+  font-size: 0.82rem;
+}
+
+.restaurant-manager-board-column__stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.restaurant-manager-board-empty {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px dashed var(--restaurant-border);
+  color: var(--restaurant-text-soft);
+  text-align: center;
+}
+
+.restaurant-manager-kitchen-card__meta span {
+  display: inline-flex;
+}
+
+.restaurant-manager-table-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.restaurant-manager-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+}
+
+.restaurant-manager-table th,
+.restaurant-manager-table td {
+  padding: 0.95rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--restaurant-border);
+  vertical-align: top;
+}
+
+.restaurant-manager-table th {
+  color: var(--restaurant-text-soft);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.restaurant-manager-table tbody tr:hover {
+  background: rgba(255, 253, 249, 0.76);
+}
+
+.restaurant-manager-table__primary {
+  display: grid;
+  gap: 0.16rem;
+}
+
+.restaurant-manager-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.restaurant-manager-inline-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  max-width: 100%;
+  min-height: 2.34rem;
+  padding: 0.58rem 0.84rem;
+  border-radius: 0.9rem;
+  background: rgba(215, 166, 81, 0.14);
+  color: #87561f;
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.restaurant-manager-inline-button--ghost {
+  background: rgba(34, 24, 21, 0.06);
+  color: #4a3b31;
+}
+
+.restaurant-manager-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.restaurant-manager-badge--success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.restaurant-manager-badge--info {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.restaurant-manager-badge--warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.restaurant-manager-badge--danger {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.restaurant-manager-badge--neutral {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.restaurant-manager-progress-list {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.restaurant-manager-progress-list__item {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.restaurant-manager-progress-list__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.restaurant-manager-chart {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.restaurant-manager-chart__item {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.restaurant-manager-chart__canvas {
+  display: flex;
+  align-items: flex-end;
+  min-height: 10rem;
+  padding: 0.7rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(215, 166, 81, 0.08), rgba(83, 116, 92, 0.04)),
+    #faf7f2;
+}
+
+.restaurant-manager-chart__bar {
+  width: 100%;
+  border-radius: 0.8rem 0.8rem 0.4rem 0.4rem;
+  background: linear-gradient(180deg, rgba(74, 44, 36, 0.96), rgba(215, 166, 81, 0.96));
+}
+
+.restaurant-manager-chart__meta {
+  display: grid;
+  gap: 0.1rem;
+  text-align: center;
+}
+
+.restaurant-manager-chart__meta small {
+  color: var(--restaurant-text-muted);
+}
+
+.restaurant-manager-settings-grid {
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.restaurant-manager-color-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+  margin-top: 0.35rem;
+}
+
+.restaurant-manager-color-preview__swatch {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.restaurant-manager-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.restaurant-manager-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.48rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(215, 166, 81, 0.12);
+  border: 1px solid rgba(215, 166, 81, 0.18);
+  color: #895922;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.restaurant-manager-chip--soft {
+  background: rgba(83, 116, 92, 0.08);
+  border-color: rgba(83, 116, 92, 0.18);
+  color: #4d6a55;
+}
+
+.restaurant-manager-empty-state {
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+  min-height: 13rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.restaurant-manager-empty-state__icon {
+  background: rgba(34, 24, 21, 0.06);
+  color: var(--restaurant-text-soft);
+}
+
+.restaurant-manager-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 70;
+  max-width: min(420px, calc(100vw - 2rem));
+  padding: 0.95rem 1.05rem;
+  border-radius: 1rem;
+  background: rgba(35, 23, 19, 0.94);
+  color: #f8fafc;
+  box-shadow: 0 24px 44px rgba(22, 16, 14, 0.24);
+}
+
+@media (min-width: 760px) {
+  .restaurant-manager-topbar {
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.92fr);
+    align-items: center;
+  }
+
+  .restaurant-manager-topbar__actions {
+    grid-column: 1 / -1;
+  }
+
+  .restaurant-manager-banner,
+  .restaurant-manager-module-intro {
+    grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
+    align-items: center;
+  }
+
+  .restaurant-manager-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .restaurant-manager-panel--span-2,
+  .restaurant-manager-panel--span-3 {
+    grid-column: 1 / -1;
+  }
+
+  .restaurant-manager-settings-grid {
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  }
+
+  .restaurant-manager-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .restaurant-manager-app-shell {
+    grid-template-columns: clamp(274px, 22vw, 334px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .restaurant-manager-sidebar {
+    position: sticky;
+    top: 12px;
+    width: clamp(274px, 22vw, 334px);
+    max-width: clamp(274px, 22vw, 334px);
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-self: start;
+  }
+
+  .restaurant-manager-sidebar__nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .restaurant-manager-topbar {
+    grid-template-columns: minmax(260px, 0.95fr) minmax(260px, 0.82fr) minmax(0, auto);
+  }
+
+  .restaurant-manager-topbar__actions {
+    grid-column: auto;
+    justify-content: flex-end;
+  }
+
+  .restaurant-manager-topbar__button {
+    flex: 0 1 auto;
+  }
+
+  .restaurant-manager-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .restaurant-manager-panel--span-2 {
+    grid-column: span 2;
+  }
+
+  .restaurant-manager-panel--span-3 {
+    grid-column: span 3;
+  }
+
+  .restaurant-manager-board {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .restaurant-manager-sidebar__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .restaurant-manager-sidebar__actions {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  .restaurant-manager-topbar__actions,
+  .restaurant-manager-sidebar__actions,
+  .restaurant-manager-sidebar__summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .restaurant-manager-list-card__header,
+  .restaurant-manager-alert-card__header,
+  .restaurant-manager-product-card__header,
+  .restaurant-manager-promo-card__header,
+  .restaurant-manager-reservation-card__header,
+  .restaurant-manager-table-card__header,
+  .restaurant-manager-kitchen-card__header,
+  .restaurant-manager-activity-list__head,
+  .restaurant-manager-integration-card__header,
+  .restaurant-manager-brand-card,
+  .restaurant-manager-inline-actions,
+  .restaurant-manager-promo-card__footer {
+    flex-direction: column;
+  }
+
+  .restaurant-manager-topbar__button,
+  .restaurant-manager-ghost-link,
+  .restaurant-manager-primary-link {
+    flex: initial;
+    width: 100%;
+  }
+
+  .restaurant-manager-table {
+    min-width: 840px;
+  }
+}
+
+@media (max-width: 520px) {
+  .restaurant-manager-app-shell {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .restaurant-manager-topbar,
+  .restaurant-manager-banner,
+  .restaurant-manager-module-intro,
+  .restaurant-manager-panel,
+  .restaurant-manager-metric-card,
+  .restaurant-manager-sidebar {
+    border-radius: 1.22rem;
+  }
+
+  .restaurant-manager-topbar,
+  .restaurant-manager-banner,
+  .restaurant-manager-module-intro,
+  .restaurant-manager-panel,
+  .restaurant-manager-sidebar {
+    padding: 0.92rem;
+  }
+
+  .restaurant-manager-nav-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .restaurant-manager-nav-item__counter {
+    display: none;
+  }
+
+  .restaurant-manager-sidebar__nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .restaurant-manager-sidebar,
+  .restaurant-manager-main {
+    width: 100%;
+    max-width: calc(100vw - 20px);
+    min-width: 0;
+  }
+
+  .restaurant-manager-sidebar__business {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .restaurant-manager-metric-card {
+    padding: 1rem;
+  }
+
+  .restaurant-manager-metric-card__body strong {
+    font-size: clamp(1.2rem, 8vw, 1.8rem);
+  }
+
+  .restaurant-manager-summary-grid,
+  .restaurant-manager-product-grid,
+  .restaurant-manager-promo-grid,
+  .restaurant-manager-reservation-grid,
+  .restaurant-manager-table-grid,
+  .restaurant-manager-integration-grid,
+  .restaurant-manager-field-grid,
+  .restaurant-manager-chart,
+  .restaurant-manager-board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
