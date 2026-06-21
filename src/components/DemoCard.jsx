@@ -1,6 +1,74 @@
 import { CTAButton } from './CTAButton.jsx';
 
 function renderPreview(demo) {
+  if (demo.slug === 'event-manager') {
+    return (
+      <div className="relative z-10 grid h-full grid-cols-[92px_minmax(0,1fr)] gap-3 p-4 text-left text-white">
+        <div className="flex flex-col gap-2 rounded-[1.05rem] border border-white/10 bg-slate-950/42 p-3 shadow-[0_18px_30px_rgba(2,8,23,0.18)]">
+          <div className="h-8 rounded-2xl bg-teal-300/22" />
+          <div className="h-6 rounded-full bg-white/8" />
+          <div className="h-6 rounded-full bg-white/8" />
+          <div className="mt-auto grid gap-2">
+            <div className="h-5 rounded-full bg-rose-300/18" />
+            <div className="h-5 rounded-full bg-cyan-300/12" />
+          </div>
+        </div>
+
+        <div className="grid gap-3">
+          <div className="rounded-[1.1rem] border border-white/10 bg-slate-950/36 p-3 shadow-[0_18px_30px_rgba(2,8,23,0.16)]">
+            <div className="mb-3 flex items-start justify-between gap-3">
+              <div>
+                <p className="text-[0.63rem] font-semibold uppercase tracking-[0.22em] text-cyan-100/72">
+                  Event Manager
+                </p>
+                <p className="mt-1 text-lg font-semibold leading-none text-white">
+                  Operacion de torneos
+                </p>
+              </div>
+              <div className="rounded-full bg-rose-300/18 px-2.5 py-1 text-[0.68rem] font-semibold text-rose-100">
+                Live
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2">
+              {[
+                ['Equipos', '18'],
+                ['Pagos', '$65k'],
+                ['Agenda', '7'],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-2xl bg-white/6 px-2.5 py-2">
+                  <p className="text-[0.6rem] uppercase tracking-[0.18em] text-slate-300">{label}</p>
+                  <p className="mt-1 text-sm font-semibold text-white">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-[1.08fr_0.92fr] gap-3">
+            <div className="rounded-[1rem] border border-white/8 bg-white/8 p-3">
+              <div className="mb-3 h-20 rounded-[0.9rem] bg-gradient-to-br from-cyan-400/28 via-teal-300/18 to-transparent" />
+              <div className="flex items-center justify-between text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-300">
+                <span>Calendario</span>
+                <span>Agenda</span>
+              </div>
+            </div>
+
+            <div className="grid gap-3">
+              <div className="rounded-[1rem] border border-white/8 bg-white/8 p-3">
+                <p className="text-[0.6rem] uppercase tracking-[0.18em] text-slate-300">Sponsors</p>
+                <p className="mt-1 text-sm font-semibold text-white">5</p>
+              </div>
+              <div className="rounded-[1rem] border border-white/8 bg-white/8 p-3">
+                <p className="text-[0.6rem] uppercase tracking-[0.18em] text-slate-300">Media</p>
+                <p className="mt-1 text-sm font-semibold text-white">6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (demo.slug === 'restaurant-manager') {
     return (
       <div className="relative z-10 grid h-full grid-cols-[90px_minmax(0,1fr)] gap-3 p-4 text-left">

@@ -1,5 +1,29 @@
 export const demos = [
   {
+    slug: 'event-manager',
+    path: 'event-manager/',
+    name: 'ByteShark Event Manager',
+    businessName: 'ByteShark Event Manager',
+    category: 'Sistema administrativo para eventos, torneos y campanas',
+    problem:
+      'Muestra como una operacion de eventos puede administrar inscripciones, equipos, pagos, calendario, patrocinadores, evidencias y reportes desde una sola herramienta interna.',
+    ctaLabel: 'Abrir demo',
+    accent: {
+      from: '#123a63',
+      to: '#14b8a6',
+      halo: 'rgba(20, 184, 166, 0.22)',
+      surface: 'rgba(18, 58, 99, 0.1)',
+    },
+    contact: {
+      whatsapp: {
+        phone: '524614220738',
+        message:
+          'Hola ByteShark, vi la demo ByteShark Event Manager y quiero solicitar un sistema similar para mi evento o campana.',
+      },
+    },
+    highlights: ['Eventos', 'Inscripciones', 'Equipos', 'Pagos', 'Patrocinadores', 'Evidencias'],
+  },
+  {
     slug: 'restaurant-manager',
     path: 'restaurant-manager/',
     name: 'ByteShark Restaurant Manager',
