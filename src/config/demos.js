@@ -1,4 +1,4 @@
-export const demos = [
+const demosCatalog = [
   {
     slug: 'event-manager',
     path: 'event-manager/',
@@ -690,6 +690,32 @@ export const demos = [
     },
   },
 ];
+
+const preferredDemoOrder = [
+  'cafe-restaurante',
+  'business-manager',
+  'booking-manager',
+  'salud-profesional',
+  'restaurant-manager',
+  'stock-manager',
+  'despacho-contable',
+  'real-estate-manager',
+  'event-manager',
+  'barberia',
+];
+
+const preferredDemoIndex = new Map(preferredDemoOrder.map((slug, index) => [slug, index]));
+
+export const demos = [...demosCatalog].sort((left, right) => {
+  const leftIndex = preferredDemoIndex.get(left.slug) ?? Number.MAX_SAFE_INTEGER;
+  const rightIndex = preferredDemoIndex.get(right.slug) ?? Number.MAX_SAFE_INTEGER;
+
+  if (leftIndex !== rightIndex) {
+    return leftIndex - rightIndex;
+  }
+
+  return left.name.localeCompare(right.name, 'es');
+});
 
 export const demosBySlug = Object.fromEntries(demos.map((demo) => [demo.slug, demo]));
 
